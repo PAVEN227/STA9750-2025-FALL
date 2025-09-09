@@ -1,0 +1,16 @@
+---
+title: "Welcome to My STA 9750 Website"
+---
+
+## About Me
+Hi, I’m **Paven Mathew Oommen**.  
+I’m a Master’s student at Baruch College.  
+
+This site contains my course projects for **STA 9750**.  
+
+Here’s a little R demo running inline:  
+
+```{r}
+#| include: false
+1+1
+
