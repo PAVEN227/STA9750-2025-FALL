@@ -11,6 +11,6 @@ This site contains my course projects for **STA 9750**.
 Here’s a little R demo running inline:  
 
 ```{r}
-#| include: false
+#| include: true
 1+1
-
+```
