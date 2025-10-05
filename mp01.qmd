@@ -1,5 +1,5 @@
 ---
-title: "Netflix Top 10 Analysis"
+title: "Mini Project #01: Gourmet Cheeseburgers Across the Globe"
 author: "PAVEN227"
 format:
   html:
@@ -653,3 +653,8 @@ ggplot(top5_tv, aes(x = show_title, y = total_weeks, color = show_title)) +
 
 ```
 
+system("git add docs/*")
+
+system("git commit -m 'Update Mini-Project 01 formatting'")
+
+system("git push")
