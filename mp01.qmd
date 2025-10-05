@@ -4,9 +4,14 @@ author: "PAVEN227"
 format:
   html:
     theme: cosmo
-    code-fold: show   # Enables the toggle button for foldable chunks
+    code-fold: true
+    code-summary: "Show Code"
+    toc: true
+    toc-depth: 2
 execute:
   echo: true
+  warning: false
+  message: false
 ---
 
 
@@ -14,7 +19,7 @@ execute:
 This project examines Netflix’s Top 10 datasets to analyze global and regional streaming trends. Data were collected from Netflix’s TuDum website, which tracks weekly rankings and total viewing hours for films and TV shows across multiple countries. The analysis focuses on identifying patterns in audience engagement, highlighting the most popular titles, and comparing performance across regions and time periods. By exploring these datasets, the project provides insights into global viewing preferences, content longevity, and the growing influence of international productions on Netflix’s platform.
 
 
-```{r setup, message=FALSE, warning=FALSE}
+```{r setup, message=FALSE, warning=FALSE, results='hide'}
 # Global options
 options(scipen = 999)  # avoid scientific notation
 
