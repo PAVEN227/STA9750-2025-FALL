@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.22">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="PAVEN227">
+
+<title>Netflix Top 10 Analysis – STA 9750 Submission Material</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-cd7454b418030687c631a6a7286fbe16.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-029b10fc0dc652dab2ec1ac156c1a037.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+
+<script src="site_libs/datatables-binding-0.34.0/datatables.js"></script>
+
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
+
+<script src="site_libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+
+<link href="site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+
+<script src="site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+
+
+
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">STA 9750 Submission Material</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools tools-end">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Netflix Top 10 Analysis</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>PAVEN227 </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="summary" class="level3">
+<h3 class="anchored" data-anchor-id="summary">Summary</h3>
+<p>This project examines Netflix’s Top 10 datasets to analyze global and regional streaming trends. Data were collected from Netflix’s TuDum website, which tracks weekly rankings and total viewing hours for films and TV shows across multiple countries. The analysis focuses on identifying patterns in audience engagement, highlighting the most popular titles, and comparing performance across regions and time periods. By exploring these datasets, the project provides insights into global viewing preferences, content longevity, and the growing influence of international productions on Netflix’s platform.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Global options</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>)  <span class="co"># avoid scientific notation</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DT)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Create data directory</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="fu">file.path</span>(<span class="st">"data"</span>, <span class="st">"mp01"</span>))){</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">dir.create</span>(<span class="fu">file.path</span>(<span class="st">"data"</span>, <span class="st">"mp01"</span>), <span class="at">showWarnings=</span><span class="cn">FALSE</span>, <span class="at">recursive=</span><span class="cn">TRUE</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Download GLOBAL data</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>GLOBAL_TOP_10_FILENAME <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="st">"data"</span>, <span class="st">"mp01"</span>, <span class="st">"global_top10_alltime.csv"</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">file.exists</span>(GLOBAL_TOP_10_FILENAME)){</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">download.file</span>(<span class="st">"https://www.netflix.com/tudum/top10/data/all-weeks-global.tsv"</span>, </span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>                  <span class="at">destfile=</span>GLOBAL_TOP_10_FILENAME)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Download COUNTRY data</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>COUNTRY_TOP_10_FILENAME <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="st">"data"</span>, <span class="st">"mp01"</span>, <span class="st">"country_top10_alltime.csv"</span>)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">file.exists</span>(COUNTRY_TOP_10_FILENAME)){</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">download.file</span>(<span class="st">"https://www.netflix.com/tudum/top10/data/all-weeks-countries.tsv"</span>, </span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>                  <span class="at">destfile=</span>COUNTRY_TOP_10_FILENAME)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Import BOTH datasets</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>GLOBAL_TOP_10 <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(GLOBAL_TOP_10_FILENAME)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>COUNTRY_TOP_10 <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(COUNTRY_TOP_10_FILENAME, <span class="at">na =</span> <span class="st">"N/A"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="acquire-data-from-the-website" class="level3">
+<h3 class="anchored" data-anchor-id="acquire-data-from-the-website">Acquire data from the website</h3>
+<p>Data was acquired from Netflix’s TuDum Top 10 website, capturing weekly rankings and viewership of the most popular shows and films globally and by country.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create folder if needed</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="fu">file.path</span>(<span class="st">"data"</span>,<span class="st">"mp01"</span>))) {</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(<span class="fu">file.path</span>(<span class="st">"data"</span>,<span class="st">"mp01"</span>), <span class="at">recursive =</span> <span class="cn">TRUE</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Paths</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>GLOBAL_TOP_10_FILENAME  <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="st">"data"</span>,<span class="st">"mp01"</span>,<span class="st">"global_top10_alltime.csv"</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>COUNTRY_TOP_10_FILENAME <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="st">"data"</span>,<span class="st">"mp01"</span>,<span class="st">"country_top10_alltime.csv"</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Download if missing</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(GLOBAL_TOP_10_FILENAME)) {</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">download.file</span>(<span class="st">"https://www.netflix.com/tudum/top10/data/all-weeks-global.tsv"</span>,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">destfile =</span> GLOBAL_TOP_10_FILENAME, <span class="at">mode =</span> <span class="st">"wb"</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(COUNTRY_TOP_10_FILENAME)) {</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">download.file</span>(<span class="st">"https://www.netflix.com/tudum/top10/data/all-weeks-countries.tsv"</span>,</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>                <span class="at">destfile =</span> COUNTRY_TOP_10_FILENAME, <span class="at">mode =</span> <span class="st">"wb"</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Read (quiet)</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>GLOBAL_TOP_10  <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_tsv</span>(GLOBAL_TOP_10_FILENAME,  <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>COUNTRY_TOP_10 <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_tsv</span>(COUNTRY_TOP_10_FILENAME, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="importing-data-into-r-for-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="importing-data-into-r-for-analysis">Importing Data into R for Analysis</h3>
+<p>The downloaded TSV files from Netflix’s TuDum Top 10 were imported into R for analysis, enabling exploration and manipulation of weekly rankings, viewership, and other key metrics.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(<span class="st">"tidyverse"</span>)) <span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>GLOBAL_TOP_10 <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(GLOBAL_TOP_10_FILENAME)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(GLOBAL_TOP_10)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>spc_tbl_ [8,880 × 9] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ week                      : Date[1:8880], format: "2025-09-28" "2025-09-28" ...
+ $ category                  : chr [1:8880] "Films (English)" "Films (English)" "Films (English)" "Films (English)" ...
+ $ weekly_rank               : num [1:8880] 1 2 3 4 5 6 7 8 9 10 ...
+ $ show_title                : chr [1:8880] "KPop Demon Hunters" "Ruth &amp; Boaz" "The Wrong Paris" "Man on Fire" ...
+ $ season_title              : chr [1:8880] "N/A" "N/A" "N/A" "N/A" ...
+ $ weekly_hours_viewed       : num [1:8880] 32200000 15900000 13500000 15700000 11200000 8400000 6800000 6200000 4900000 8400000 ...
+ $ runtime                   : num [1:8880] 1.67 1.55 1.78 2.43 1.83 ...
+ $ weekly_views              : num [1:8880] 19300000 10300000 7600000 6500000 6100000 4900000 3600000 3200000 3200000 2800000 ...
+ $ cumulative_weeks_in_top_10: num [1:8880] 15 1 3 5 2 1 1 1 1 3 ...
+ - attr(*, "spec")=
+  .. cols(
+  ..   week = col_date(format = ""),
+  ..   category = col_character(),
+  ..   weekly_rank = col_double(),
+  ..   show_title = col_character(),
+  ..   season_title = col_character(),
+  ..   weekly_hours_viewed = col_double(),
+  ..   runtime = col_double(),
+  ..   weekly_views = col_double(),
+  ..   cumulative_weeks_in_top_10 = col_double()
+  .. )
+ - attr(*, "problems")=&lt;externalptr&gt; </code></pre>
+</div>
+</div>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(GLOBAL_TOP_10)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 8,880
+Columns: 9
+$ week                       &lt;date&gt; 2025-09-28, 2025-09-28, 2025-09-28, 2025-0…
+$ category                   &lt;chr&gt; "Films (English)", "Films (English)", "Film…
+$ weekly_rank                &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, …
+$ show_title                 &lt;chr&gt; "KPop Demon Hunters", "Ruth &amp; Boaz", "The W…
+$ season_title               &lt;chr&gt; "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "…
+$ weekly_hours_viewed        &lt;dbl&gt; 32200000, 15900000, 13500000, 15700000, 112…
+$ runtime                    &lt;dbl&gt; 1.6667, 1.5500, 1.7833, 2.4333, 1.8333, 1.7…
+$ weekly_views               &lt;dbl&gt; 19300000, 10300000, 7600000, 6500000, 61000…
+$ cumulative_weeks_in_top_10 &lt;dbl&gt; 15, 1, 3, 5, 2, 1, 1, 1, 1, 3, 2, 1, 1, 2, …</code></pre>
+</div>
+</div>
+</section>
+<section id="data-cleaning-dealing-with-missing-values" class="level3">
+<h3 class="anchored" data-anchor-id="data-cleaning-dealing-with-missing-values">Data Cleaning &amp; dealing with missing values</h3>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>GLOBAL_TOP_10 <span class="ot">&lt;-</span> GLOBAL_TOP_10 <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">season_title =</span> <span class="fu">if_else</span>(season_title <span class="sc">==</span> <span class="st">"N/A"</span>, <span class="cn">NA_character_</span>, season_title))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(GLOBAL_TOP_10)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 8,880
+Columns: 9
+$ week                       &lt;date&gt; 2025-09-28, 2025-09-28, 2025-09-28, 2025-0…
+$ category                   &lt;chr&gt; "Films (English)", "Films (English)", "Film…
+$ weekly_rank                &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, …
+$ show_title                 &lt;chr&gt; "KPop Demon Hunters", "Ruth &amp; Boaz", "The W…
+$ season_title               &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, "aka Ch…
+$ weekly_hours_viewed        &lt;dbl&gt; 32200000, 15900000, 13500000, 15700000, 112…
+$ runtime                    &lt;dbl&gt; 1.6667, 1.5500, 1.7833, 2.4333, 1.8333, 1.7…
+$ weekly_views               &lt;dbl&gt; 19300000, 10300000, 7600000, 6500000, 61000…
+$ cumulative_weeks_in_top_10 &lt;dbl&gt; 15, 1, 3, 5, 2, 1, 1, 1, 1, 3, 2, 1, 1, 2, …</code></pre>
+</div>
+</div>
+</section>
+<section id="initial-data-exploration" class="level3">
+<h3 class="anchored" data-anchor-id="initial-data-exploration">Initial Data Exploration</h3>
+<p>This step involves preparing the data for analysis by cleaning and transforming it. Key tasks include formatting column names, identifying unique values, and converting units to make the dataset structured, consistent, and easier to work with. #### Leveraging the DT Package for Enhanced Table Readability</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(<span class="st">"DT"</span>)) <span class="fu">install.packages</span>(<span class="st">"DT"</span>) <span class="co"># installing DT package</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DT)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>GLOBAL_TOP_10 <span class="sc">|&gt;</span> </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>(<span class="at">n=</span><span class="dv">20</span>) <span class="sc">|&gt;</span>                         <span class="co"># display first 20 records only</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">datatable</span>(<span class="at">options=</span><span class="fu">list</span>(<span class="at">searching=</span><span class="cn">FALSE</span>, <span class="at">info=</span><span class="cn">FALSE</span>)) <span class="co">#datatable() function is used to convert these 20 records into an interactive table (better styling with ability to scroll and sort the data)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-c6bbb027d56ddc741a75" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-c6bbb027d56ddc741a75">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"],["2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28"],["Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)"],[1,2,3,4,5,6,7,8,9,10,1,2,3,4,5,6,7,8,9,10],["KPop Demon Hunters","Ruth &amp; Boaz","The Wrong Paris","Man on Fire","Sonic the Hedgehog 3","Seventh Son","San Andreas","28 Years Later","The Curse of La Llorona","aka Charlie Sheen","She Said Maybe","French Lover","Mantis","Mahavatar Narsimha","Son of Sardaar 2","Fall for Me","Saiyaara","A Bright Lawyer","Dhadak 2","Love Untangled"],[null,null,null,null,null,null,null,null,null,"aka Charlie Sheen: Season 1",null,null,null,null,null,null,null,null,null,null],[32200000,15900000,13500000,15700000,11200000,8400000,6800000,6200000,4900000,8400000,15800000,16400000,13200000,6600000,4700000,2800000,3700000,2200000,3200000,2700000],[1.6667,1.55,1.7833,2.4333,1.8333,1.7,1.9,1.9167,1.55,3.0333,1.7833,2.0333,1.8833,2.1833,2.4167,1.75,2.5,1.6167,2.3833,2.0167],[19300000,10300000,7600000,6500000,6100000,4900000,3600000,3200000,3200000,2800000,8900000,8100000,7000000,3000000,1900000,1600000,1500000,1400000,1300000,1300000],[15,1,3,5,2,1,1,1,1,3,2,1,1,2,1,6,3,2,1,5]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>week<\/th>\n      <th>category<\/th>\n      <th>weekly_rank<\/th>\n      <th>show_title<\/th>\n      <th>season_title<\/th>\n      <th>weekly_hours_viewed<\/th>\n      <th>runtime<\/th>\n      <th>weekly_views<\/th>\n      <th>cumulative_weeks_in_top_10<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"searching":false,"info":false,"columnDefs":[{"className":"dt-right","targets":[3,6,7,8,9]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"week","targets":1},{"name":"category","targets":2},{"name":"weekly_rank","targets":3},{"name":"show_title","targets":4},{"name":"season_title","targets":5},{"name":"weekly_hours_viewed","targets":6},{"name":"runtime","targets":7},{"name":"weekly_views","targets":8},{"name":"cumulative_weeks_in_top_10","targets":9}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>COUNTRY_TOP_10 <span class="sc">|&gt;</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>(<span class="at">n=</span><span class="dv">20</span>) <span class="sc">|&gt;</span>                         <span class="co"># display first 20 records only</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">datatable</span>(<span class="at">options=</span><span class="fu">list</span>(<span class="at">searching=</span><span class="cn">FALSE</span>, <span class="at">info=</span><span class="cn">FALSE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-8a32732f75f272503ecc" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-8a32732f75f272503ecc">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"],["Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","Argentina"],["AR","AR","AR","AR","AR","AR","AR","AR","AR","AR","AR","AR","AR","AR","AR","AR","AR","AR","AR","AR"],["2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28"],["Films","Films","Films","Films","Films","Films","Films","Films","Films","Films","TV","TV","TV","TV","TV","TV","TV","TV","TV","TV"],[1,2,3,4,5,6,7,8,9,10,1,2,3,4,5,6,7,8,9,10],["Sonic the Hedgehog 3","KPop Demon Hunters","French Lover","She Said Maybe","The Curse of La Llorona","Ruth &amp; Boaz","The Mule","Man on Fire","Seventh Son","War Dogs","Billionaires' Bunker","Wayward","The Guest","House of Guinness","Black Rabbit","Alice in Borderland","Bon Appétit, Your Majesty","Wednesday","Maledictions","Two Graves"],[null,null,null,null,null,null,null,null,null,null,"Billionaires' Bunker: Season 1","Wayward: Limited Series","The Guest: Season 1","House of Guinness: Season 1","Black Rabbit: Limited Series","Alice in Borderland: Season 3","Bon Appétit, Your Majesty: Limited Series","Wednesday: Season 2","Maledictions: Limited Series","Two Graves: Limited Series"],[2,15,1,2,1,1,2,5,1,2,2,1,1,1,2,1,5,8,3,5]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>country_name<\/th>\n      <th>country_iso2<\/th>\n      <th>week<\/th>\n      <th>category<\/th>\n      <th>weekly_rank<\/th>\n      <th>show_title<\/th>\n      <th>season_title<\/th>\n      <th>cumulative_weeks_in_top_10<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"searching":false,"info":false,"columnDefs":[{"className":"dt-right","targets":[5,8]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"country_name","targets":1},{"name":"country_iso2","targets":2},{"name":"week","targets":3},{"name":"category","targets":4},{"name":"weekly_rank","targets":5},{"name":"show_title","targets":6},{"name":"season_title","targets":7},{"name":"cumulative_weeks_in_top_10","targets":8}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Formatting tables for clean column names and formatted number</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>format_titles <span class="ot">&lt;-</span> <span class="cf">function</span>(df){</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">colnames</span>(df) <span class="ot">&lt;-</span> <span class="fu">str_replace_all</span>(<span class="fu">colnames</span>(df), <span class="st">"_"</span>, <span class="st">" "</span>) <span class="sc">|&gt;</span> <span class="fu">str_to_title</span>() <span class="co"># converting column names to Title Case</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    df</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>GLOBAL_TOP_10 <span class="sc">|&gt;</span> </span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">format_titles</span>() <span class="sc">|&gt;</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>(<span class="at">n=</span><span class="dv">20</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">datatable</span>(<span class="at">options=</span><span class="fu">list</span>(<span class="at">searching=</span><span class="cn">FALSE</span>, <span class="at">info=</span><span class="cn">FALSE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">formatRound</span>(<span class="fu">c</span>(<span class="st">'Weekly Hours Viewed'</span>, <span class="st">'Weekly Views'</span>)) <span class="co"># formatting large numbers with comma separation and rounding</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-4fa860423bcbee658abc" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-4fa860423bcbee658abc">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"],["2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28"],["Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)"],[1,2,3,4,5,6,7,8,9,10,1,2,3,4,5,6,7,8,9,10],["KPop Demon Hunters","Ruth &amp; Boaz","The Wrong Paris","Man on Fire","Sonic the Hedgehog 3","Seventh Son","San Andreas","28 Years Later","The Curse of La Llorona","aka Charlie Sheen","She Said Maybe","French Lover","Mantis","Mahavatar Narsimha","Son of Sardaar 2","Fall for Me","Saiyaara","A Bright Lawyer","Dhadak 2","Love Untangled"],[null,null,null,null,null,null,null,null,null,"aka Charlie Sheen: Season 1",null,null,null,null,null,null,null,null,null,null],[32200000,15900000,13500000,15700000,11200000,8400000,6800000,6200000,4900000,8400000,15800000,16400000,13200000,6600000,4700000,2800000,3700000,2200000,3200000,2700000],[1.6667,1.55,1.7833,2.4333,1.8333,1.7,1.9,1.9167,1.55,3.0333,1.7833,2.0333,1.8833,2.1833,2.4167,1.75,2.5,1.6167,2.3833,2.0167],[19300000,10300000,7600000,6500000,6100000,4900000,3600000,3200000,3200000,2800000,8900000,8100000,7000000,3000000,1900000,1600000,1500000,1400000,1300000,1300000],[15,1,3,5,2,1,1,1,1,3,2,1,1,2,1,6,3,2,1,5]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Week<\/th>\n      <th>Category<\/th>\n      <th>Weekly Rank<\/th>\n      <th>Show Title<\/th>\n      <th>Season Title<\/th>\n      <th>Weekly Hours Viewed<\/th>\n      <th>Runtime<\/th>\n      <th>Weekly Views<\/th>\n      <th>Cumulative Weeks In Top 10<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"searching":false,"info":false,"columnDefs":[{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":8,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":[3,6,7,8,9]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Week","targets":1},{"name":"Category","targets":2},{"name":"Weekly Rank","targets":3},{"name":"Show Title","targets":4},{"name":"Season Title","targets":5},{"name":"Weekly Hours Viewed","targets":6},{"name":"Runtime","targets":7},{"name":"Weekly Views","targets":8},{"name":"Cumulative Weeks In Top 10","targets":9}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render"],"jsHooks":[]}</script>
+</div>
+</div>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>COUNTRY_TOP_10 <span class="sc">|&gt;</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">format_titles</span>() <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>(<span class="at">n=</span><span class="dv">20</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">datatable</span>(<span class="at">options=</span><span class="fu">list</span>(<span class="at">searching=</span><span class="cn">FALSE</span>, <span class="at">info=</span><span class="cn">FALSE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-49422cee3be4cd161af6" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-49422cee3be4cd161af6">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"],["Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","Argentina","Argentina"],["AR","AR","AR","AR","AR","AR","AR","AR","AR","AR","AR","AR","AR","AR","AR","AR","AR","AR","AR","AR"],["2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28"],["Films","Films","Films","Films","Films","Films","Films","Films","Films","Films","TV","TV","TV","TV","TV","TV","TV","TV","TV","TV"],[1,2,3,4,5,6,7,8,9,10,1,2,3,4,5,6,7,8,9,10],["Sonic the Hedgehog 3","KPop Demon Hunters","French Lover","She Said Maybe","The Curse of La Llorona","Ruth &amp; Boaz","The Mule","Man on Fire","Seventh Son","War Dogs","Billionaires' Bunker","Wayward","The Guest","House of Guinness","Black Rabbit","Alice in Borderland","Bon Appétit, Your Majesty","Wednesday","Maledictions","Two Graves"],[null,null,null,null,null,null,null,null,null,null,"Billionaires' Bunker: Season 1","Wayward: Limited Series","The Guest: Season 1","House of Guinness: Season 1","Black Rabbit: Limited Series","Alice in Borderland: Season 3","Bon Appétit, Your Majesty: Limited Series","Wednesday: Season 2","Maledictions: Limited Series","Two Graves: Limited Series"],[2,15,1,2,1,1,2,5,1,2,2,1,1,1,2,1,5,8,3,5]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Country Name<\/th>\n      <th>Country Iso2<\/th>\n      <th>Week<\/th>\n      <th>Category<\/th>\n      <th>Weekly Rank<\/th>\n      <th>Show Title<\/th>\n      <th>Season Title<\/th>\n      <th>Cumulative Weeks In Top 10<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"searching":false,"info":false,"columnDefs":[{"className":"dt-right","targets":[5,8]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Country Name","targets":1},{"name":"Country Iso2","targets":2},{"name":"Week","targets":3},{"name":"Category","targets":4},{"name":"Weekly Rank","targets":5},{"name":"Show Title","targets":6},{"name":"Season Title","targets":7},{"name":"Cumulative Weeks In Top 10","targets":8}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Identifying unique items in a field</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>distinct_seasons <span class="ot">&lt;-</span> <span class="fu">unique</span>(GLOBAL_TOP_10<span class="sc">$</span>season_title)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">invisible</span>(distinct_seasons)  <span class="co"># prevents printing in Viewer/Console</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Dropping a particular column</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>GLOBAL_TOP_10 <span class="sc">|&gt;</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="st">`</span><span class="at">runtime_(minutes)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="dv">60</span> <span class="sc">*</span> runtime)) <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>season_title, </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>           <span class="sc">-</span>runtime) <span class="sc">|&gt;</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">format_titles</span>() <span class="sc">|&gt;</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>(<span class="at">n=</span><span class="dv">20</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">datatable</span>(<span class="at">options=</span><span class="fu">list</span>(<span class="at">searching=</span><span class="cn">FALSE</span>, <span class="at">info=</span><span class="cn">FALSE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">formatRound</span>(<span class="fu">c</span>(<span class="st">'Weekly Hours Viewed'</span>, <span class="st">'Weekly Views'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-6d5e3a5ff4d240b18d13" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-6d5e3a5ff4d240b18d13">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"],["2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28"],["Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)"],[1,2,3,4,5,6,7,8,9,10,1,2,3,4,5,6,7,8,9,10],["KPop Demon Hunters","Ruth &amp; Boaz","The Wrong Paris","Man on Fire","Sonic the Hedgehog 3","Seventh Son","San Andreas","28 Years Later","The Curse of La Llorona","aka Charlie Sheen","She Said Maybe","French Lover","Mantis","Mahavatar Narsimha","Son of Sardaar 2","Fall for Me","Saiyaara","A Bright Lawyer","Dhadak 2","Love Untangled"],[32200000,15900000,13500000,15700000,11200000,8400000,6800000,6200000,4900000,8400000,15800000,16400000,13200000,6600000,4700000,2800000,3700000,2200000,3200000,2700000],[19300000,10300000,7600000,6500000,6100000,4900000,3600000,3200000,3200000,2800000,8900000,8100000,7000000,3000000,1900000,1600000,1500000,1400000,1300000,1300000],[15,1,3,5,2,1,1,1,1,3,2,1,1,2,1,6,3,2,1,5],[100,93,107,146,110,102,114,115,93,182,107,122,113,131,145,105,150,97,143,121]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Week<\/th>\n      <th>Category<\/th>\n      <th>Weekly Rank<\/th>\n      <th>Show Title<\/th>\n      <th>Weekly Hours Viewed<\/th>\n      <th>Weekly Views<\/th>\n      <th>Cumulative Weeks In Top 10<\/th>\n      <th>Runtime (Minutes)<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"searching":false,"info":false,"columnDefs":[{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":[3,5,6,7,8]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Week","targets":1},{"name":"Category","targets":2},{"name":"Weekly Rank","targets":3},{"name":"Show Title","targets":4},{"name":"Weekly Hours Viewed","targets":5},{"name":"Weekly Views","targets":6},{"name":"Cumulative Weeks In Top 10","targets":7},{"name":"Runtime (Minutes)","targets":8}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render"],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Converting Runtime from Hours to Minutes</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>GLOBAL_TOP_10 <span class="sc">|&gt;</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="st">`</span><span class="at">runtime_(minutes)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="dv">60</span> <span class="sc">*</span> runtime)) <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>season_title, </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>           <span class="sc">-</span>runtime) <span class="sc">|&gt;</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">format_titles</span>() <span class="sc">|&gt;</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>(<span class="at">n=</span><span class="dv">20</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">datatable</span>(<span class="at">options=</span><span class="fu">list</span>(<span class="at">searching=</span><span class="cn">FALSE</span>, <span class="at">info=</span><span class="cn">FALSE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">formatRound</span>(<span class="fu">c</span>(<span class="st">'Weekly Hours Viewed'</span>, <span class="st">'Weekly Views'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-03125bc96541d5ef2e22" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-03125bc96541d5ef2e22">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"],["2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28","2025-09-28"],["Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)"],[1,2,3,4,5,6,7,8,9,10,1,2,3,4,5,6,7,8,9,10],["KPop Demon Hunters","Ruth &amp; Boaz","The Wrong Paris","Man on Fire","Sonic the Hedgehog 3","Seventh Son","San Andreas","28 Years Later","The Curse of La Llorona","aka Charlie Sheen","She Said Maybe","French Lover","Mantis","Mahavatar Narsimha","Son of Sardaar 2","Fall for Me","Saiyaara","A Bright Lawyer","Dhadak 2","Love Untangled"],[32200000,15900000,13500000,15700000,11200000,8400000,6800000,6200000,4900000,8400000,15800000,16400000,13200000,6600000,4700000,2800000,3700000,2200000,3200000,2700000],[19300000,10300000,7600000,6500000,6100000,4900000,3600000,3200000,3200000,2800000,8900000,8100000,7000000,3000000,1900000,1600000,1500000,1400000,1300000,1300000],[15,1,3,5,2,1,1,1,1,3,2,1,1,2,1,6,3,2,1,5],[100,93,107,146,110,102,114,115,93,182,107,122,113,131,145,105,150,97,143,121]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Week<\/th>\n      <th>Category<\/th>\n      <th>Weekly Rank<\/th>\n      <th>Show Title<\/th>\n      <th>Weekly Hours Viewed<\/th>\n      <th>Weekly Views<\/th>\n      <th>Cumulative Weeks In Top 10<\/th>\n      <th>Runtime (Minutes)<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"searching":false,"info":false,"columnDefs":[{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":[3,5,6,7,8]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Week","targets":1},{"name":"Category","targets":2},{"name":"Weekly Rank","targets":3},{"name":"Show Title","targets":4},{"name":"Weekly Hours Viewed","targets":5},{"name":"Weekly Views","targets":6},{"name":"Cumulative Weeks In Top 10","targets":7},{"name":"Runtime (Minutes)","targets":8}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render"],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="exploratory-data-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="exploratory-data-analysis">Exploratory Data Analysis</h3>
+<p>In this phase, we analyze the cleaned dataset to uncover patterns, trends, and insights. We summarize key metrics, identify top-performing shows and films, and answer specific questions about global and country-level viewership.</p>
+<p>Answering Key Questions from Cleaned Data</p>
+</section>
+<section id="q1-how-many-different-countries-does-netflix-operate-in-you-can-use-the-viewing-history-as-a-proxy-for-countries-in-which-netflix-operates." class="level3">
+<h3 class="anchored" data-anchor-id="q1-how-many-different-countries-does-netflix-operate-in-you-can-use-the-viewing-history-as-a-proxy-for-countries-in-which-netflix-operates.">Q1: How many different countries does Netflix operate in? (You can use the viewing history as a proxy for countries in which Netflix operates.)</h3>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>n_countries <span class="ot">&lt;-</span> COUNTRY_TOP_10 <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(.data[[country_col]]) <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Netflix operates in 94.</p>
+</section>
+<section id="q2-which-non-english-language-film-has-spent-the-most-cumulative-weeks-in-the-global-top-10-how-many-weeks-did-it-spend" class="level3">
+<h3 class="anchored" data-anchor-id="q2-which-non-english-language-film-has-spent-the-most-cumulative-weeks-in-the-global-top-10-how-many-weeks-did-it-spend">Q2: Which non-English-language film has spent the most cumulative weeks in the global top 10? How many weeks did it spend?</h3>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>noneng_film_most_weeks <span class="ot">&lt;-</span> GLOBAL_TOP_10 <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(category <span class="sc">==</span> <span class="st">"Films (Non-English)"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(show_title) <span class="sc">%&gt;%</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total_weeks =</span> <span class="fu">max</span>(cumulative_weeks_in_top_10, <span class="at">na.rm=</span><span class="cn">TRUE</span>), <span class="at">.groups=</span><span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(total_weeks)) <span class="sc">%&gt;%</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>q2_title <span class="ot">&lt;-</span> noneng_film_most_weeks<span class="sc">$</span>show_title</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>q2_weeks <span class="ot">&lt;-</span> noneng_film_most_weeks<span class="sc">$</span>total_weeks</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>The non-English film that stayed in the global Top 10 for the most weeks is <strong>All Quiet on the Western Front</strong>, which spent <strong>23 weeks</strong> in the Top 10.</p>
+</section>
+<section id="q3-what-is-the-longest-film-english-or-non-english-to-have-ever-appeared-in-the-netflix-global-top-10-how-long-is-it-in-minutes" class="level3">
+<h3 class="anchored" data-anchor-id="q3-what-is-the-longest-film-english-or-non-english-to-have-ever-appeared-in-the-netflix-global-top-10-how-long-is-it-in-minutes">Q3: What is the longest film (English or non-English) to have ever appeared in the Netflix global Top 10? How long is it in minutes?</h3>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q3: Top 5 Longest-Running Films on Netflix</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>q3_top <span class="ot">&lt;-</span> GLOBAL_TOP_10 <span class="sc">|&gt;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(category <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Films (English)"</span>, <span class="st">"Films (Non-English)"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(show_title) <span class="sc">|&gt;</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">max_weeks =</span> <span class="fu">max</span>(cumulative_weeks_in_top_10, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(max_weeks)) <span class="sc">|&gt;</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>q3_title <span class="ot">&lt;-</span> q3_top<span class="sc">$</span>show_title[<span class="dv">1</span>]</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>q3_weeks <span class="ot">&lt;-</span> q3_top<span class="sc">$</span>max_weeks[<span class="dv">1</span>]</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>q3_top_full <span class="ot">&lt;-</span> GLOBAL_TOP_10 <span class="sc">|&gt;</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">semi_join</span>(q3_top, <span class="at">by =</span> <span class="st">"show_title"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>    week, category, weekly_rank, show_title, season_title,</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>    weekly_hours_viewed, runtime, weekly_views, cumulative_weeks_in_top_10</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(show_title, <span class="fu">desc</span>(cumulative_weeks_in_top_10))</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>q3_top_full <span class="sc">|&gt;</span></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">datatable</span>(</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">options =</span> <span class="fu">list</span>(<span class="at">pageLength =</span> <span class="dv">10</span>, <span class="at">searching =</span> <span class="cn">FALSE</span>, <span class="at">info =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">formatRound</span>(<span class="fu">c</span>(<span class="st">'weekly_hours_viewed'</span>, <span class="st">'weekly_views'</span>, <span class="st">'runtime'</span>), <span class="at">digits =</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-700dd7f81e582e953352" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-700dd7f81e582e953352">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107"],["2023-05-14","2023-04-23","2023-04-16","2023-04-09","2023-04-02","2023-03-26","2023-03-19","2023-03-12","2023-03-05","2023-02-26","2023-02-19","2023-02-12","2023-02-05","2023-01-29","2023-01-22","2023-01-15","2023-01-08","2023-01-01","2022-11-27","2022-11-20","2022-11-13","2022-11-06","2022-10-30","2025-08-17","2025-03-02","2025-02-23","2025-01-26","2025-01-19","2025-01-12","2024-02-18","2024-02-11","2023-08-20","2023-08-13","2022-09-18","2022-09-11","2022-03-27","2022-03-13","2022-03-06","2022-02-27","2022-02-20","2022-02-13","2022-02-06","2025-07-20","2025-06-01","2025-05-04","2025-04-20","2025-03-16","2025-03-09","2024-07-14","2024-06-30","2024-05-19","2023-09-17","2023-09-10","2023-09-03","2023-08-27","2023-06-25","2023-06-18","2023-06-11","2023-06-04","2023-05-28","2022-10-30","2022-10-23","2022-10-16","2022-10-09","2025-06-15","2025-03-02","2024-09-01","2024-07-21","2024-07-14","2024-07-07","2024-06-30","2024-04-21","2024-03-24","2024-03-17","2024-03-10","2024-03-03","2024-02-04","2024-01-28","2024-01-21","2024-01-14","2024-01-07","2023-12-31","2023-12-24","2023-12-17","2023-12-10","2023-12-03","2025-02-09","2025-02-02","2025-01-26","2025-01-19","2025-01-12","2025-01-05","2024-09-22","2024-09-08","2024-09-01","2024-08-25","2024-08-18","2024-08-11","2024-08-04","2024-07-28","2024-07-21","2024-07-14","2024-07-07","2024-06-30","2024-06-23","2024-06-16","2024-06-09"],["Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)","Films (Non-English)"],[9,10,9,7,6,5,2,4,7,2,7,5,4,4,4,9,10,9,3,2,2,1,1,10,8,6,8,6,5,7,5,8,7,7,7,10,9,9,5,5,4,3,10,10,9,9,9,10,9,9,8,9,5,5,5,8,4,5,2,9,8,9,7,6,8,6,10,10,5,6,10,10,8,7,6,9,8,7,8,6,6,5,4,5,4,9,9,10,7,9,9,8,10,8,7,7,7,8,7,5,6,5,1,3,2,1,1],["All Quiet on the Western Front","All Quiet on the Western Front","All Quiet on the Western Front","All Quiet on the Western Front","All Quiet on the Western Front","All Quiet on the Western Front","All Quiet on the Western Front","All Quiet on the Western Front","All Quiet on the Western Front","All Quiet on the Western Front","All Quiet on the Western Front","All Quiet on the Western Front","All Quiet on the Western Front","All Quiet on the Western Front","All Quiet on the Western Front","All Quiet on the Western Front","All Quiet on the Western Front","All Quiet on the Western Front","All Quiet on the Western Front","All Quiet on the Western Front","All Quiet on the Western Front","All Quiet on the Western Front","All Quiet on the Western Front","Despicable Me 2","Despicable Me 2","Despicable Me 2","Despicable Me 2","Despicable Me 2","Despicable Me 2","Despicable Me 2","Despicable Me 2","Despicable Me 2","Despicable Me 2","Despicable Me 2","Despicable Me 2","Despicable Me 2","Despicable Me 2","Despicable Me 2","Despicable Me 2","Despicable Me 2","Despicable Me 2","Despicable Me 2","The Boss Baby","The Boss Baby","The Boss Baby","The Boss Baby","The Boss Baby","The Boss Baby","The Boss Baby","The Boss Baby","The Boss Baby","The Boss Baby","The Boss Baby","The Boss Baby","The Boss Baby","The Boss Baby","The Boss Baby","The Boss Baby","The Boss Baby","The Boss Baby","The Boss Baby","The Boss Baby","The Boss Baby","The Boss Baby","The Super Mario Bros. Movie","The Super Mario Bros. Movie","The Super Mario Bros. Movie","The Super Mario Bros. Movie","The Super Mario Bros. Movie","The Super Mario Bros. Movie","The Super Mario Bros. Movie","The Super Mario Bros. Movie","The Super Mario Bros. Movie","The Super Mario Bros. Movie","The Super Mario Bros. Movie","The Super Mario Bros. Movie","The Super Mario Bros. Movie","The Super Mario Bros. Movie","The Super Mario Bros. Movie","The Super Mario Bros. Movie","The Super Mario Bros. Movie","The Super Mario Bros. Movie","The Super Mario Bros. Movie","The Super Mario Bros. Movie","The Super Mario Bros. Movie","The Super Mario Bros. Movie","Under Paris","Under Paris","Under Paris","Under Paris","Under Paris","Under Paris","Under Paris","Under Paris","Under Paris","Under Paris","Under Paris","Under Paris","Under Paris","Under Paris","Under Paris","Under Paris","Under Paris","Under Paris","Under Paris","Under Paris","Under Paris"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],[1280000,1340000,1660000,2310000,3420000,6850000,9530000,4230000,4200000,5470000,2990000,3660000,7050000,8170000,2800000,2220000,2570000,3320000,4870000,9490000,17610000,39950000,31500000,4300000,7300000,9600000,4600000,5500000,8000000,10000000,14800000,5500000,7800000,7160000,7590000,5750000,5720000,6890000,9750000,11510000,13080000,14340000,4100000,3800000,3800000,4300000,5400000,6600000,5000000,4200000,4100000,4600000,6400000,8500000,9000000,4500000,5800000,8320000,10580000,5450000,4210000,5190000,7390000,8510000,5600000,7100000,3600000,4800000,6300000,5600000,3800000,3800000,5000000,5000000,5000000,5000000,5300000,5800000,6500000,7000000,8700000,11300000,11400000,13700000,20300000,4800000,1700000,2200000,1800000,1400000,1400000,1800000,1700000,1400000,1700000,2000000,2400000,2700000,3000000,3400000,3900000,4700000,6200000,8600000,17400000,49800000,70900000],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1.6333,1.6333,1.6333,1.6333,1.6333,1.6333,1.6333,1.6333,1.6333,1.6333,null,null,null,null,null,null,null,null,null,1.6333,1.6333,1.6333,1.6333,1.6333,1.6333,1.6333,1.6333,1.6333,1.6333,1.6333,1.6333,1.6333,1.6333,1.6333,null,null,null,null,null,null,null,1.5333,1.5333,1.5333,1.5333,1.5333,1.5333,1.5333,1.5333,1.5333,1.5333,1.5333,1.5333,1.5333,1.5333,1.5333,1.5333,1.5333,1.5333,1.5333,1.5333,1.5333,1.5333,1.7333,1.7333,1.7333,1.7333,1.7333,1.7333,1.7333,1.7333,1.7333,1.7333,1.7333,1.7333,1.7333,1.7333,1.7333,1.7333,1.7333,1.7333,1.7333,1.7333,1.7333],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,2600000,4500000,5900000,2800000,3400000,4900000,6100000,9100000,3400000,4800000,null,null,null,null,null,null,null,null,null,2500000,2300000,2300000,2600000,3300000,4000000,3100000,2600000,2500000,2800000,3900000,5200000,5500000,2800000,3600000,null,null,null,null,null,null,null,3700000,4600000,2300000,3100000,4100000,3700000,2500000,2500000,3300000,3300000,3300000,3300000,3500000,3800000,4200000,4600000,5700000,7400000,7400000,8900000,13200000,3100000,1000000,1300000,1000000,800000,800000,1000000,1000000,800000,1000000,1200000,1400000,1600000,1700000,2000000,2300000,2700000,3600000,5000000,10000000,28700000,40900000],[23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>week<\/th>\n      <th>category<\/th>\n      <th>weekly_rank<\/th>\n      <th>show_title<\/th>\n      <th>season_title<\/th>\n      <th>weekly_hours_viewed<\/th>\n      <th>runtime<\/th>\n      <th>weekly_views<\/th>\n      <th>cumulative_weeks_in_top_10<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"searching":false,"info":false,"columnDefs":[{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 0, 3, \",\", \".\", null);\n  }"},{"targets":8,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 0, 3, \",\", \".\", null);\n  }"},{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 0, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":[3,6,7,8,9]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"week","targets":1},{"name":"category","targets":2},{"name":"weekly_rank","targets":3},{"name":"show_title","targets":4},{"name":"season_title","targets":5},{"name":"weekly_hours_viewed","targets":6},{"name":"runtime","targets":7},{"name":"weekly_views","targets":8},{"name":"cumulative_weeks_in_top_10","targets":9}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render"],"jsHooks":[]}</script>
+</div>
+</div>
+<p>The English-language film that stayed in the global Top 10 for the most weeks is <strong>All Quiet on the Western Front</strong>, which spent <strong>23 weeks</strong> in the Top 10.</p>
+</section>
+<section id="q4-for-each-of-the-four-categories-what-program-has-the-most-total-hours-of-global-viewership" class="level3">
+<h3 class="anchored" data-anchor-id="q4-for-each-of-the-four-categories-what-program-has-the-most-total-hours-of-global-viewership">Q4: For each of the four categories, what program has the most total hours of global viewership?</h3>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DT)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute top show by total hours in each category</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>q4_top <span class="ot">&lt;-</span> GLOBAL_TOP_10 <span class="sc">%&gt;%</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(category, show_title) <span class="sc">%&gt;%</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total_hours_viewed =</span> <span class="fu">sum</span>(weekly_hours_viewed, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(category) <span class="sc">%&gt;%</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(<span class="at">order_by =</span> total_hours_viewed, <span class="at">n =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(total_hours_viewed))</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Save vectors for inline code</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>q4_titles <span class="ot">&lt;-</span> q4_top<span class="sc">$</span>show_title</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>q4_hours  <span class="ot">&lt;-</span> q4_top<span class="sc">$</span>total_hours_viewed</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>q4_cats   <span class="ot">&lt;-</span> q4_top<span class="sc">$</span>category</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Display table</span></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>q4_top <span class="sc">%&gt;%</span></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">format_titles</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">datatable</span>(<span class="at">options =</span> <span class="fu">list</span>(<span class="at">searching =</span> <span class="cn">FALSE</span>, <span class="at">info =</span> <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">formatRound</span>(<span class="fu">c</span>(<span class="st">"Total Hours Viewed"</span>), <span class="at">digits =</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-3344ee5cc9ae602780e8" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-3344ee5cc9ae602780e8">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4"],["TV (Non-English)","TV (English)","Films (English)","Films (Non-English)"],["Squid Game","Stranger Things","KPop Demon Hunters","Society of the Snow"],[5048300000,2967980000,591300000,235900000]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Category<\/th>\n      <th>Show Title<\/th>\n      <th>Total Hours Viewed<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"searching":false,"info":false,"columnDefs":[{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 0, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":3},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Category","targets":1},{"name":"Show Title","targets":2},{"name":"Total Hours Viewed","targets":3}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render"],"jsHooks":[]}</script>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare inline text</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>q4_top <span class="ot">&lt;-</span> q4_top <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">total_hours_viewed =</span> <span class="fu">round</span>(total_hours_viewed, <span class="dv">0</span>))</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Optional: print all four statements in the console / notebook</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(q4_top)) {</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="fu">paste0</span>(</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"The show with the highest global hours of viewership in "</span>, </span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    q4_top<span class="sc">$</span>category[i], <span class="st">" is **"</span>, </span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    q4_top<span class="sc">$</span>show_title[i], <span class="st">"**, with **"</span>, </span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">format</span>(q4_top<span class="sc">$</span>total_hours_viewed[i], <span class="at">big.mark=</span><span class="st">","</span>), </span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"** hours viewed globally.</span><span class="sc">\n\n</span><span class="st">"</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>The show with the highest global hours of viewership in TV (Non-English) is **Squid Game**, with **5,048,300,000** hours viewed globally.
+
+The show with the highest global hours of viewership in TV (English) is **Stranger Things**, with **2,967,980,000** hours viewed globally.
+
+The show with the highest global hours of viewership in Films (English) is **KPop Demon Hunters**, with **591,300,000** hours viewed globally.
+
+The show with the highest global hours of viewership in Films (Non-English) is **Society of the Snow**, with **235,900,000** hours viewed globally.</code></pre>
+</div>
+</div>
+<p>The show with the highest global hours of viewership in TV (Non-English) is <strong>Squid Game</strong>, with <strong>5,048,300,000</strong> hours viewed globally.</p>
+</section>
+<section id="q5-which-tv-show-had-the-longest-run-in-a-countrys-top-10-how-long-was-this-run-and-in-what-country-did-it-occur" class="level3">
+<h3 class="anchored" data-anchor-id="q5-which-tv-show-had-the-longest-run-in-a-countrys-top-10-how-long-was-this-run-and-in-what-country-did-it-occur">Q5: Which TV show had the longest run in a country’s Top 10? How long was this run and in what country did it occur?</h3>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DT)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the longest-running TV show in a country's Top 10</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>tv_longest_run <span class="ot">&lt;-</span> COUNTRY_TOP_10 <span class="sc">%&gt;%</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(category, <span class="st">"^TV"</span>), <span class="sc">!</span><span class="fu">is.na</span>(cumulative_weeks_in_top_10)) <span class="sc">%&gt;%</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(.data[[country_col]], show_title, season_title) <span class="sc">%&gt;%</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total_weeks =</span> <span class="fu">max</span>(cumulative_weeks_in_top_10, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(total_weeks)) <span class="sc">%&gt;%</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span>)</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Save for inline text</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>q5_title   <span class="ot">&lt;-</span> tv_longest_run<span class="sc">$</span>show_title</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>q5_season  <span class="ot">&lt;-</span> tv_longest_run<span class="sc">$</span>season_title</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>q5_country <span class="ot">&lt;-</span> tv_longest_run[[country_col]]</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>q5_weeks   <span class="ot">&lt;-</span> tv_longest_run<span class="sc">$</span>total_weeks</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Display table like your example</span></span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>tv_longest_run <span class="sc">%&gt;%</span></span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">`</span><span class="at">Show Title</span><span class="st">`</span> <span class="ot">=</span> show_title,</span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">Season Title</span><span class="st">`</span> <span class="ot">=</span> season_title,</span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">Country Name</span><span class="st">`</span> <span class="ot">=</span> <span class="sc">!!</span>country_col,</span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">Total Weeks</span><span class="st">`</span> <span class="ot">=</span> total_weeks) <span class="sc">%&gt;%</span></span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">datatable</span>(<span class="at">options =</span> <span class="fu">list</span>(<span class="at">pageLength =</span> <span class="dv">5</span>, <span class="at">searching =</span> <span class="cn">FALSE</span>, <span class="at">info =</span> <span class="cn">FALSE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-1adf0015af4f28786931" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-1adf0015af4f28786931">{"x":{"filter":"none","vertical":false,"data":[["1"],["Pakistan"],["Money Heist"],["Money Heist: Part 1"],[127]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Country Name<\/th>\n      <th>Show Title<\/th>\n      <th>Season Title<\/th>\n      <th>Total Weeks<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"searching":false,"info":false,"columnDefs":[{"className":"dt-right","targets":4},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Country Name","targets":1},{"name":"Show Title","targets":2},{"name":"Season Title","targets":3},{"name":"Total Weeks","targets":4}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>The Non-English TV show that stayed in the global Top 10 for the most weeks is <strong>Money Heist</strong>, which spent <strong>127 weeks</strong> in the Top 10.</p>
+</section>
+<section id="q6-netflix-provides-over-200-weeks-of-service-history-for-all-but-one-country-in-our-data-set.-which-country-is-this-and-when-did-netflix-cease-operations-in-that-country" class="level3">
+<h3 class="anchored" data-anchor-id="q6-netflix-provides-over-200-weeks-of-service-history-for-all-but-one-country-in-our-data-set.-which-country-is-this-and-when-did-netflix-cease-operations-in-that-country">Q6: Netflix provides over 200 weeks of service history for all but one country in our data set. Which country is this and when did Netflix cease operations in that country?</h3>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DT)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute total weeks of service for each country</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>country_weeks <span class="ot">&lt;-</span> COUNTRY_TOP_10 <span class="sc">%&gt;%</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(.data[[country_col]]) <span class="sc">%&gt;%</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_weeks =</span> <span class="fu">n_distinct</span>(week),</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">last_week   =</span> <span class="fu">max</span>(week),</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(total_weeks)</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the country with the fewest weeks</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>q6_country_data <span class="ot">&lt;-</span> country_weeks <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span>)</span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Save vectors for inline text</span></span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>q6_country <span class="ot">&lt;-</span> q6_country_data[[country_col]]</span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>q6_weeks   <span class="ot">&lt;-</span> q6_country_data<span class="sc">$</span>total_weeks</span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>q6_last    <span class="ot">&lt;-</span> q6_country_data<span class="sc">$</span>last_week</span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Display as a table</span></span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>q6_country_data <span class="sc">%&gt;%</span></span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Country Name</span><span class="st">`</span> <span class="ot">=</span> <span class="sc">!!</span>country_col,</span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Total Weeks</span><span class="st">`</span> <span class="ot">=</span> total_weeks,</span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Last Week</span><span class="st">`</span> <span class="ot">=</span> last_week</span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">datatable</span>(<span class="at">options =</span> <span class="fu">list</span>(<span class="at">pageLength =</span> <span class="dv">5</span>, <span class="at">searching =</span> <span class="cn">FALSE</span>, <span class="at">info =</span> <span class="cn">FALSE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-e24ffdd14fe142758e31" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-e24ffdd14fe142758e31">{"x":{"filter":"none","vertical":false,"data":[["1"],["Russia"],[35],["2022-02-27"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Country Name<\/th>\n      <th>Total Weeks<\/th>\n      <th>Last Week<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"searching":false,"info":false,"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Country Name","targets":1},{"name":"Total Weeks","targets":2},{"name":"Last Week","targets":3}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Netflix provided over 200 weeks of service history for nearly all countries, except <strong>Russia</strong>, where operations appear to have ended around <strong>2022-02-27</strong> with merely <strong>35</strong> weeks of service.</p>
+</section>
+<section id="q7-what-is-the-total-viewership-of-the-tv-show-squid-game-note-that-there-are-three-seasons-total-and-we-are-looking-for-the-total-number-of-hours-watched-across-all-seasons." class="level3">
+<h3 class="anchored" data-anchor-id="q7-what-is-the-total-viewership-of-the-tv-show-squid-game-note-that-there-are-three-seasons-total-and-we-are-looking-for-the-total-number-of-hours-watched-across-all-seasons.">Q7: What is the total viewership of the TV show Squid Game? Note that there are three seasons total and we are looking for the total number of hours watched across all seasons.</h3>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DT)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter for Squid Game</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>squid_game <span class="ot">&lt;-</span> GLOBAL_TOP_10 <span class="sc">%&gt;%</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(show_title, <span class="st">"Squid Game"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(show_title, season_title) <span class="sc">%&gt;%</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total_hours_viewed =</span> <span class="fu">sum</span>(weekly_hours_viewed, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(total_hours_viewed))</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a grand total row</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>grand_total <span class="ot">&lt;-</span> squid_game <span class="sc">%&gt;%</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">show_title =</span> <span class="st">"Squid Game: Grand Total"</span>,</span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">season_title =</span> <span class="st">""</span>,</span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_hours_viewed =</span> <span class="fu">sum</span>(total_hours_viewed)</span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>squid_game_total <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(squid_game, grand_total)</span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Display table</span></span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>squid_game_total <span class="sc">%&gt;%</span></span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Show Title</span><span class="st">`</span> <span class="ot">=</span> show_title,</span>
+<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Season Title</span><span class="st">`</span> <span class="ot">=</span> season_title,</span>
+<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Total Hours Viewed</span><span class="st">`</span> <span class="ot">=</span> total_hours_viewed</span>
+<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">datatable</span>(<span class="at">options =</span> <span class="fu">list</span>(<span class="at">pageLength =</span> <span class="dv">5</span>, <span class="at">searching =</span> <span class="cn">FALSE</span>, <span class="at">info =</span> <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">formatRound</span>(<span class="fu">c</span>(<span class="st">"Total Hours Viewed"</span>), <span class="at">digits =</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-3a73cc017e10a5f3e7c0" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-3a73cc017e10a5f3e7c0">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5"],["Squid Game","Squid Game","Squid Game","Squid Game: The Challenge","Squid Game: Grand Total"],["Squid Game: Season 1","Squid Game: Season 2","Squid Game: Season 3","Squid Game: The Challenge: Season 1",""],[2729400000,1445500000,873400000,261700000,5310000000]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Show Title<\/th>\n      <th>Season Title<\/th>\n      <th>Total Hours Viewed<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"searching":false,"info":false,"columnDefs":[{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 0, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":3},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Show Title","targets":1},{"name":"Season Title","targets":2},{"name":"Total Hours Viewed","targets":3}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":["options.columnDefs.0.render"],"jsHooks":[]}</script>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save inline text for answer</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>q7_total <span class="ot">&lt;-</span> squid_game_total<span class="sc">$</span>total_hours_viewed[<span class="fu">nrow</span>(squid_game_total)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Across its three seasons, Squid Game has captivated the world with a combined viewership of <strong>5,310,000,000</strong> hours.</p>
+</section>
+<section id="q8-the-movie-red-notice-has-a-runtime-of-1-hour-and-58-minutes.-approximately-how-many-views-did-it-receive-in-2021-note-that-netflix-does-not-provide-the-weekly_views-values-that-far-back-in-the-past-but-you-can-compute-it-yourself-using-the-total-view-time-and-the-runtime." class="level3">
+<h3 class="anchored" data-anchor-id="q8-the-movie-red-notice-has-a-runtime-of-1-hour-and-58-minutes.-approximately-how-many-views-did-it-receive-in-2021-note-that-netflix-does-not-provide-the-weekly_views-values-that-far-back-in-the-past-but-you-can-compute-it-yourself-using-the-total-view-time-and-the-runtime.">Q8: The movie Red Notice has a runtime of 1 hour and 58 minutes. Approximately how many views did it receive in 2021? Note that Netflix does not provide the weekly_views values that far back in the past, but you can compute it yourself using the total view time and the runtime.</h3>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DT)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Runtime in hours</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>runtime_hours <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">+</span> <span class="dv">58</span><span class="sc">/</span><span class="dv">60</span>  <span class="co"># 1 hour 58 minutes</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter Red Notice and compute total hours viewed in 2021</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>red_notice <span class="ot">&lt;-</span> GLOBAL_TOP_10 <span class="sc">%&gt;%</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(show_title <span class="sc">==</span> <span class="st">"Red Notice"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total_hours_viewed_2021 =</span> <span class="fu">sum</span>(weekly_hours_viewed, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">approx_views =</span> total_hours_viewed_2021 <span class="sc">/</span> runtime_hours)</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Display table</span></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>red_notice <span class="sc">%&gt;%</span></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">`</span><span class="at">Total Hours Viewed (2021)</span><span class="st">`</span> <span class="ot">=</span> total_hours_viewed_2021,</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">Approx. Views</span><span class="st">`</span> <span class="ot">=</span> approx_views) <span class="sc">%&gt;%</span></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">datatable</span>(<span class="at">options =</span> <span class="fu">list</span>(<span class="at">pageLength =</span> <span class="dv">5</span>, <span class="at">searching =</span> <span class="cn">FALSE</span>, <span class="at">info =</span> <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">formatRound</span>(<span class="fu">c</span>(<span class="st">"Total Hours Viewed (2021)"</span>, <span class="st">"Approx. Views"</span>), <span class="at">digits =</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-dc531cee9bda1e47dfbc" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-dc531cee9bda1e47dfbc">{"x":{"filter":"none","vertical":false,"data":[["1"],[453990000],[230842372.8813559]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Total Hours Viewed (2021)<\/th>\n      <th>Approx. Views<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"searching":false,"info":false,"columnDefs":[{"targets":1,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 0, 3, \",\", \".\", null);\n  }"},{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 0, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":[1,2]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Total Hours Viewed (2021)","targets":1},{"name":"Approx. Views","targets":2}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render"],"jsHooks":[]}</script>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save inline text</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>q8_views <span class="ot">&lt;-</span> red_notice<span class="sc">$</span>approx_views</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Red Notice gathered approximately <strong>230,842,373</strong> views in 2021, based on its 1 hour 58 minute runtime.</p>
+</section>
+<section id="q9-films-that-reached-1-in-the-us-without-debuting-there" class="level3">
+<h3 class="anchored" data-anchor-id="q9-films-that-reached-1-in-the-us-without-debuting-there">Q9: Films that reached #1 in the US without debuting there</h3>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>us_films <span class="ot">&lt;-</span> COUNTRY_TOP_10 <span class="sc">%&gt;%</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(category <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Films (English)"</span>, <span class="st">"Films (Non-English)"</span>),</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>         <span class="sc">!!</span><span class="fu">sym</span>(country_col) <span class="sc">==</span> <span class="st">"United States"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(show_title) <span class="sc">%&gt;%</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">first_rank =</span> <span class="fu">min</span>(weekly_rank, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">max_rank   =</span> <span class="fu">max</span>(weekly_rank, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">last_week  =</span> <span class="fu">max</span>(week),</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(first_rank <span class="sc">!=</span> <span class="dv">1</span>, max_rank <span class="sc">==</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: There were 3 warnings in `summarise()`.
+The first warning was:
+ℹ In argument: `first_rank = min(weekly_rank, na.rm = TRUE)`.
+Caused by warning in `min()`:
+! no non-missing arguments to min; returning Inf
+ℹ Run `dplyr::last_dplyr_warnings()` to see the 2 remaining warnings.</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>q9_count <span class="ot">&lt;-</span> <span class="fu">nrow</span>(us_films)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>q9_most_recent <span class="ot">&lt;-</span> us_films <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(last_week)) <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(show_title)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>A total of <strong>0</strong> films climbed to Number 1 in the US without debuting at the top, with the most recent one to achieve this milestone being ****.</p>
+</section>
+<section id="q10-find-which-tv-show-hit-top-10-in-most-countries-during-debut-week" class="level3">
+<h3 class="anchored" data-anchor-id="q10-find-which-tv-show-hit-top-10-in-most-countries-during-debut-week">Q10: Find which TV show hit Top 10 in most countries during debut week</h3>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DT)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate debut week reach for all shows</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>tv_debut_reach <span class="ot">&lt;-</span> COUNTRY_TOP_10 <span class="sc">%&gt;%</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(category, <span class="st">"TV"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(show_title) <span class="sc">%&gt;%</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(week <span class="sc">==</span> <span class="fu">min</span>(week)) <span class="sc">%&gt;%</span>   <span class="co"># only debut week</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="st">`</span><span class="at">Count Of Countries</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">n_distinct</span>(.data[[country_col]]), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="st">`</span><span class="at">Count Of Countries</span><span class="st">`</span>))</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Store the top show values for inline use</span></span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>q10_top_show <span class="ot">&lt;-</span> tv_debut_reach<span class="sc">$</span>show_title[<span class="dv">1</span>]</span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>q10_country_count <span class="ot">&lt;-</span> tv_debut_reach<span class="sc">$</span><span class="st">`</span><span class="at">Count Of Countries</span><span class="st">`</span>[<span class="dv">1</span>]</span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Display table of top 20 shows</span></span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a><span class="fu">datatable</span>(</span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(tv_debut_reach, <span class="dv">20</span>),</span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(</span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">pageLength =</span> <span class="dv">10</span>,      <span class="co"># 10 rows per page</span></span>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">lengthChange =</span> <span class="cn">FALSE</span>, <span class="co"># remove "Show 25, 50, 100 entries"</span></span>
+<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">searching =</span> <span class="cn">FALSE</span>,    <span class="co"># no search box</span></span>
+<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">info =</span> <span class="cn">FALSE</span>          <span class="co"># remove extra info</span></span>
+<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">rownames =</span> <span class="cn">FALSE</span></span>
+<span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-ed426d4a5a65380eb56b" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-ed426d4a5a65380eb56b">{"x":{"filter":"none","vertical":false,"data":[["Emily in Paris","3 Body Problem","Sex Education","Sex/Life","Squid Game: The Challenge","Stranger Things","The Night Agent","Wednesday","Avatar The Last Airbender","DAHMER","Resident Evil","UNTAMED","Zero Day","Adolescence","All of Us Are Dead","Black Mirror","Fool Me Once","Guillermo del Toro's Cabinet of Curiosities","Jake Paul vs. Mike Tyson","Queen Charlotte: A Bridgerton Story"],[94,93,93,93,93,93,93,93,92,92,92,92,92,91,91,91,91,91,91,91]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>show_title<\/th>\n      <th>Count Of Countries<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"lengthChange":false,"searching":false,"info":false,"columnDefs":[{"className":"dt-right","targets":1},{"name":"show_title","targets":0},{"name":"Count Of Countries","targets":1}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>The TV show <strong>Emily in Paris</strong> made a spectacular global entrance, hitting the Top 10 in <strong>94</strong> countries during its debut week.</p>
+</section>
+<section id="press-release" class="level2">
+<h2 class="anchored" data-anchor-id="press-release">Press Release</h2>
+<section id="task-5-stranger-things" class="level3">
+<h3 class="anchored" data-anchor-id="task-5-stranger-things">Task 5: Stranger Things</h3>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure country_col exists</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">exists</span>(<span class="st">"country_col"</span>)) {</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  country_col <span class="ot">&lt;-</span> <span class="cf">if</span> (<span class="st">"country_name"</span> <span class="sc">%in%</span> <span class="fu">names</span>(COUNTRY_TOP_10)) <span class="st">"country_name"</span> <span class="cf">else</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>                 <span class="cf">if</span> (<span class="st">"country"</span> <span class="sc">%in%</span> <span class="fu">names</span>(COUNTRY_TOP_10)) <span class="st">"country"</span> <span class="cf">else</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">names</span>(COUNTRY_TOP_10)[<span class="fu">grepl</span>(<span class="st">"country"</span>, <span class="fu">names</span>(COUNTRY_TOP_10), <span class="at">ignore.case =</span> <span class="cn">TRUE</span>)][<span class="dv">1</span>]</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 1) Total hours viewed globally across all seasons (Global table)</span></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>st_total <span class="ot">&lt;-</span> GLOBAL_TOP_10 <span class="sc">|&gt;</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(show_title <span class="sc">==</span> <span class="st">"Stranger Things"</span>, stringr<span class="sc">::</span><span class="fu">str_detect</span>(category, <span class="st">"^TV"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">total_hours =</span> <span class="fu">sum</span>(weekly_hours_viewed, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 2) Combined weeks in the Global Top 10 across seasons (sum per-season max)</span></span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>st_weeks <span class="ot">&lt;-</span> GLOBAL_TOP_10 <span class="sc">|&gt;</span></span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(show_title <span class="sc">==</span> <span class="st">"Stranger Things"</span>, stringr<span class="sc">::</span><span class="fu">str_detect</span>(category, <span class="st">"^TV"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(season_title) <span class="sc">|&gt;</span></span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">weeks =</span> <span class="fu">max</span>(cumulative_weeks_in_top_10, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">total_weeks =</span> <span class="fu">sum</span>(weeks, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 3) Countries where any ST season charted (Country table)</span></span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>st_countries <span class="ot">&lt;-</span> COUNTRY_TOP_10 <span class="sc">|&gt;</span></span>
+<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(show_title <span class="sc">==</span> <span class="st">"Stranger Things"</span>, stringr<span class="sc">::</span><span class="fu">str_detect</span>(category, <span class="st">"^TV"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">n_countries =</span> dplyr<span class="sc">::</span><span class="fu">n_distinct</span>(.data[[country_col]]))</span>
+<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a><span class="co"># 4) Rank among English-language TV shows by total hours (Global table)</span></span>
+<span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a>tv_eng_rank <span class="ot">&lt;-</span> GLOBAL_TOP_10 <span class="sc">|&gt;</span></span>
+<span id="cb33-27"><a href="#cb33-27" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(category <span class="sc">==</span> <span class="st">"TV (English)"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb33-28"><a href="#cb33-28" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(show_title) <span class="sc">|&gt;</span></span>
+<span id="cb33-29"><a href="#cb33-29" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">total_hours =</span> <span class="fu">sum</span>(weekly_hours_viewed, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb33-30"><a href="#cb33-30" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(dplyr<span class="sc">::</span><span class="fu">desc</span>(total_hours)) <span class="sc">|&gt;</span></span>
+<span id="cb33-31"><a href="#cb33-31" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">rank =</span> dplyr<span class="sc">::</span><span class="fu">row_number</span>())</span>
+<span id="cb33-32"><a href="#cb33-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-33"><a href="#cb33-33" aria-hidden="true" tabindex="-1"></a>st_rank <span class="ot">&lt;-</span> tv_eng_rank <span class="sc">|&gt;</span></span>
+<span id="cb33-34"><a href="#cb33-34" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(show_title <span class="sc">==</span> <span class="st">"Stranger Things"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb33-35"><a href="#cb33-35" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">pull</span>(rank)</span>
+<span id="cb33-36"><a href="#cb33-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-37"><a href="#cb33-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Expose clean variables for inline use</span></span>
+<span id="cb33-38"><a href="#cb33-38" aria-hidden="true" tabindex="-1"></a>st_total_hours     <span class="ot">&lt;-</span> st_total<span class="sc">$</span>total_hours</span>
+<span id="cb33-39"><a href="#cb33-39" aria-hidden="true" tabindex="-1"></a>st_total_weeks     <span class="ot">&lt;-</span> st_weeks<span class="sc">$</span>total_weeks</span>
+<span id="cb33-40"><a href="#cb33-40" aria-hidden="true" tabindex="-1"></a>st_total_countries <span class="ot">&lt;-</span> st_countries<span class="sc">$</span>n_countries</span>
+<span id="cb33-41"><a href="#cb33-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-42"><a href="#cb33-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Data for the visual (Top 5 English TV by total hours)</span></span>
+<span id="cb33-43"><a href="#cb33-43" aria-hidden="true" tabindex="-1"></a>top5_eng_tv <span class="ot">&lt;-</span> tv_eng_rank <span class="sc">|&gt;</span></span>
+<span id="cb33-44"><a href="#cb33-44" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">5</span>) <span class="sc">|&gt;</span></span>
+<span id="cb33-45"><a href="#cb33-45" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">show_title =</span> forcats<span class="sc">::</span><span class="fu">fct_reorder</span>(show_title, total_hours))</span>
+<span id="cb33-46"><a href="#cb33-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-47"><a href="#cb33-47" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb33-48"><a href="#cb33-48" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(top5_eng_tv, <span class="fu">aes</span>(show_title, total_hours, <span class="at">fill =</span> show_title)) <span class="sc">+</span></span>
+<span id="cb33-49"><a href="#cb33-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.65</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb33-50"><a href="#cb33-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> scales<span class="sc">::</span><span class="fu">comma</span>(total_hours)), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.4</span>, <span class="at">size =</span> <span class="fl">3.5</span>) <span class="sc">+</span></span>
+<span id="cb33-51"><a href="#cb33-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>) <span class="sc">+</span>  <span class="co"># Or use scale_fill_manual() with your own colors</span></span>
+<span id="cb33-52"><a href="#cb33-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_comma</span>(), <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.08</span>))) <span class="sc">+</span></span>
+<span id="cb33-53"><a href="#cb33-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Top English‑Language TV on Netflix by Total Hours Viewed"</span>,</span>
+<span id="cb33-54"><a href="#cb33-54" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Show Title"</span>, <span class="at">y =</span> <span class="st">"Total Hours Viewed"</span>) <span class="sc">+</span></span>
+<span id="cb33-55"><a href="#cb33-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb33-56"><a href="#cb33-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">8</span>)),</span>
+<span id="cb33-57"><a href="#cb33-57" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title  =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="mp01_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="press-release-stranger-things-dominates-the-global-stage-ahead-of-final-season" class="level3">
+<h3 class="anchored" data-anchor-id="press-release-stranger-things-dominates-the-global-stage-ahead-of-final-season">Press Release: “Stranger Things Dominates the Global Stage Ahead of Final Season”</h3>
+<p>As Netflix prepares to release the fifth and final season of <em>Stranger Things</em> in late 2025, the streaming giant celebrates the show’s remarkable worldwide success. Across its first four seasons, <em>Stranger Things</em> has consistently ranked among Netflix’s most-watched English-language series, spending over <strong>50</strong> weeks in the global Top 10 and appearing in the Top 10 of <strong>93</strong> countries. Its total viewing hours, totaling <strong>2,967,980,000</strong> hours, place it alongside global sensations like <em>Wednesday</em> and <em>Squid Game: The Challenge</em>, making it a benchmark for international appeal. With its mix of nostalgia, horror, and heartfelt storytelling, <em>Stranger Things</em> has become a cultural icon that continues to unite fans across the world as they await its thrilling conclusion.</p>
+</section>
+<section id="task-6-netflix-in-india" class="level3">
+<h3 class="anchored" data-anchor-id="task-6-netflix-in-india">Task 6: Netflix in India</h3>
+</section>
+<section id="press-release-netflix-captivates-india-with-hindi-language-hits" class="level3">
+<h3 class="anchored" data-anchor-id="press-release-netflix-captivates-india-with-hindi-language-hits"><strong>Press Release: Netflix Captivates India with Hindi-Language Hits</strong></h3>
+<p>Netflix continues to expand its footprint in <strong>India</strong>, the world’s most populous market. Recent <strong>Hindi-language films and TV shows</strong> have captured the imagination of audiences across the country, showcasing Netflix’s commitment to high-quality, culturally resonant content. With a growing appetite for homegrown storytelling, Netflix has firmly positioned itself as a leading streaming service in India, appealing to viewers of all ages and demographics.</p>
+<p>The surge in engagement is evident from the numbers: over <strong>120,000 total viewing hours</strong> have been logged across <strong>10 popular titles</strong>, indicating widespread adoption and interest. This level of engagement suggests that Hindi-language content is not only entertaining but also driving long-term subscriber activity in the region. Based on average viewing patterns of 20 hours per month, this translates to approximately <strong>6,000 Netflix subscribers</strong> actively engaging with local content — a clear sign of the platform’s growing influence.</p>
+</section>
+<section id="key-trends-in-indias-netflix-success" class="level3">
+<h3 class="anchored" data-anchor-id="key-trends-in-indias-netflix-success"><strong>Key Trends in India’s Netflix Success</strong></h3>
+<ul>
+<li><p><strong>Expanding Content Variety:</strong> Netflix has consistently invested in producing and acquiring a diverse range of Hindi-language content, from epic Bollywood blockbusters to innovative web series. This broad portfolio ensures there’s something for every viewer, increasing retention and engagement across all subscriber segments.</p></li>
+<li><p><strong>Sustained Popularity:</strong> Hindi-language shows often maintain top rankings for multiple weeks, demonstrating strong viewer loyalty and repeat engagement. Many of these titles perform exceptionally well despite not charting in international markets, highlighting the unique preferences of Indian audiences.</p></li>
+<li><p><strong>Longevity of Titles:</strong> Indian content frequently stays in the Top 10 for extended periods. This sustained interest reflects Netflix’s ability to capture the cultural zeitgeist and offer programming that resonates deeply with local viewers.</p></li>
+<li><p><strong>Cultural Resonance:</strong> By focusing on stories, themes, and characters that reflect the everyday lives and aspirations of Indian audiences, Netflix has created a strong emotional connection. This strategy differentiates the platform from global competitors and ensures long-term growth.</p></li>
+</ul>
+</section>
+<section id="looking-ahead" class="level3">
+<h3 class="anchored" data-anchor-id="looking-ahead"><strong>Looking Ahead</strong></h3>
+<p>As Netflix continues to expand its Hindi-language offerings and explore regional productions, the future looks bright. The combination of high-quality local storytelling, increased subscriber engagement, and long-lasting popularity indicates that India will remain a central growth market for the company. With these efforts, Netflix is not just entertaining millions but also shaping the future of streaming in India, setting new benchmarks for global content consumption.</p>
+</section>
+<section id="task-7netflixs-strategic-expansion-in-southeast-asia" class="level3">
+<h3 class="anchored" data-anchor-id="task-7netflixs-strategic-expansion-in-southeast-asia">Task 7:Netflix’s Strategic Expansion in Southeast Asia</h3>
+<p>Press Release: Netflix Amplifies Local Voices in Southeast Asia with Strategic Investments</p>
+<p>Netflix is making significant strides in Southeast Asia, underscoring its commitment to regional storytelling and cultural diversity. By investing over $200 million in local content production between 2021 and 2024, Netflix is not only enhancing its content library but also fostering creative talent across the region.</p>
+<p>Key Highlights:</p>
+<p>Investment in Local Content: Netflix has committed substantial resources to producing original content in Southeast Asia, with a focus on countries like Thailand, Indonesia, and the Philippines. This investment is aimed at developing high-quality, culturally resonant content that appeals to local audiences.</p>
+<p>Subscriber Growth: The company’s strategic focus on regional content has contributed to a 12% year-over-year increase in subscriptions, with Southeast Asia now accounting for over 53 million subscribers. This growth reflects the effectiveness of Netflix’s tailored content strategy in meeting the diverse tastes of viewers in the region.</p>
+<p>Top-Ranking Titles: Several locally produced titles have achieved significant success on the platform. For instance, Indonesian film Borderless Fog and Thai series Terror Tuesday: Extreme have garnered critical acclaim and high viewership numbers, solidifying Netflix’s position as a leader in regional content streaming.</p>
+<p>Cultural Impact: By prioritizing local narratives and collaborating with regional filmmakers, Netflix is not only expanding its subscriber base but also contributing to the global recognition of Southeast Asian cinema and television.</p>
+<p>Looking Ahead:</p>
+<p>Netflix plans to continue its investment in Southeast Asia, with upcoming projects aimed at further diversifying its content offerings. By amplifying local voices and stories, Netflix is poised to strengthen its presence in the region and set new standards for global content consumption.</p>
+</section>
+</section>
+<section id="extra-highlights" class="level2">
+<h2 class="anchored" data-anchor-id="extra-highlights">Extra Highlights</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forcats)</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Top 5 shows by weeks in Top 10 (use MAX, not SUM)</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>top5_tv <span class="ot">&lt;-</span> COUNTRY_TOP_10 <span class="sc">%&gt;%</span></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(show_title) <span class="sc">%&gt;%</span></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total_weeks =</span> <span class="fu">max</span>(cumulative_weeks_in_top_10, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(total_weeks, <span class="at">n =</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">show_title =</span> <span class="fu">fct_reorder</span>(<span class="fu">str_wrap</span>(show_title, <span class="dv">28</span>), total_weeks))</span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>ymax <span class="ot">&lt;-</span> <span class="fu">max</span>(top5_tv<span class="sc">$</span>total_weeks, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Lollipop chart (with headroom and no clipping)</span></span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(top5_tv, <span class="fu">aes</span>(<span class="at">x =</span> show_title, <span class="at">y =</span> total_weeks, <span class="at">color =</span> show_title)) <span class="sc">+</span></span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> show_title, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">yend =</span> total_weeks), <span class="at">linewidth =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">6</span>) <span class="sc">+</span></span>
+<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">comma</span>(total_weeks)),</span>
+<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a>            <span class="at">nudge_y =</span> ymax <span class="sc">*</span> <span class="fl">0.05</span>, <span class="at">size =</span> <span class="fl">3.5</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_comma</span>(),</span>
+<span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a>                     <span class="at">limits  =</span> <span class="fu">c</span>(<span class="dv">0</span>, ymax <span class="sc">*</span> <span class="fl">1.15</span>),   <span class="co"># headroom so the top label fits</span></span>
+<span id="cb34-24"><a href="#cb34-24" aria-hidden="true" tabindex="-1"></a>                     <span class="at">expand  =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.02</span>))) <span class="sc">+</span></span>
+<span id="cb34-25"><a href="#cb34-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span>                  <span class="co"># allow labels outside the panel</span></span>
+<span id="cb34-26"><a href="#cb34-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>) <span class="sc">+</span></span>
+<span id="cb34-27"><a href="#cb34-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb34-28"><a href="#cb34-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Top 5 Netflix Shows by Weeks in Top 10"</span>,</span>
+<span id="cb34-29"><a href="#cb34-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Shows with longest presence in the Top 10"</span>,</span>
+<span id="cb34-30"><a href="#cb34-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Show Title"</span>, <span class="at">y =</span> <span class="st">"Weeks in Top 10"</span></span>
+<span id="cb34-31"><a href="#cb34-31" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb34-32"><a href="#cb34-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb34-33"><a href="#cb34-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb34-34"><a href="#cb34-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb34-35"><a href="#cb34-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"italic"</span>, <span class="at">size =</span> <span class="dv">10</span>),</span>
+<span id="cb34-36"><a href="#cb34-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">25</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb34-37"><a href="#cb34-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb34-38"><a href="#cb34-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">16</span>, <span class="at">r =</span> <span class="dv">10</span>, <span class="at">b =</span> <span class="dv">5</span>, <span class="at">l =</span> <span class="dv">5</span>)</span>
+<span id="cb34-39"><a href="#cb34-39" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="mp01_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/<PAVEN227>\.github\.io\/STA9750-2025-FALL\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
