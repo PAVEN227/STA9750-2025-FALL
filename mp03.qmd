@@ -16,12 +16,8 @@ execute:
   message: false
 ---
 
-<div style="text-align: center; margin: 30px 0;">
-  <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDRmZXB3aWNhOXN0aGJ5dGVkN3E4OGtoYm14dHdmeGd5ZDNtM3NlbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l0HlOaQcLJ2hHpYdy/giphy.gif" alt="Tree growing" width="400px">
-  <h2 style="color: #2e7d32; margin-top: 15px;">Visualizing and Maintaining the Green Canopy of NYC</h2>
-</div>
-
 ## TASK 1: DOWNLOAD NYC CITY COUNCIL DISTRICT BOUNDARIES
+
 ```{r}
 #| message: false
 #| warning: false
@@ -59,8 +55,9 @@ NYC_City_Council <- function(url){
 council <- NYC_City_Council("https://s-media.nyc.gov/agencies/dcp/assets/files/zip/data-tools/bytes/city-council/nycc_25c.zip")
 
 ```
- 
-## TASK 2: DOWNLOAD TREE POINTS 
+
+## TASK 2: DOWNLOAD TREE POINTS
+
 ```{r}
 #| message: false
 #| warning: false
@@ -126,12 +123,11 @@ cat("Geometry type:", paste(unique(st_geometry_type(trees_sf)), collapse=", "), 
 glimpse(trees_sf)
 ```
 
-### DATA INTEGRATION AND INTIAL EXPLORATION 
+### DATA INTEGRATION AND INTIAL EXPLORATION
 
-### MAPPING NYC TREES 
+### MAPPING NYC TREES
 
-## TASK 3: PLOT ALL TREE POINTS 
-
+## TASK 3: PLOT ALL TREE POINTS
 
 ```{r}
 ## TASK 3: PLOT ALL TREE POINTS 
@@ -191,7 +187,7 @@ plot_trees <- function(tree_data, council_data, n_trees = 10000) {
 plot_trees(trees_sf, council, n_trees = 5000)
 ```
 
-### Interactive Visualization (Extra Credit)
+## \## EXTRA CREDIT - 1 Interactive Visualization
 
 ```{r}
 #| message: false
@@ -267,14 +263,7 @@ interactive_map <- leaflet(width = "100%", height = "600px") %>%
 interactive_map
 ```
 
-**Interactive Features:**
-- **Zoom and Pan**: Use mouse wheel or pinch to zoom, click and drag to pan
-- **Click Trees**: Click individual tree markers to see species, address, status, and district
-- **Hover**: Hover over trees to see species name
-- **Clustering**: Trees are clustered at higher zoom levels for better performance - zoom in to see individual trees
-- **Layer Control**: Toggle district boundaries and tree layers on/off using the control in the top right
-- **Reset View**: Double-click to reset view
-
+**Interactive Features:** - **Zoom and Pan**: Use mouse wheel or pinch to zoom, click and drag to pan - **Click Trees**: Click individual tree markers to see species, address, status, and district - **Hover**: Hover over trees to see species name - **Clustering**: Trees are clustered at higher zoom levels for better performance - zoom in to see individual trees - **Layer Control**: Toggle district boundaries and tree layers on/off using the control in the top right - **Reset View**: Double-click to reset view
 
 ## TASK 4: DISTRICT-LEVEL ANALYSIS OF TREE COVERAGE
 
@@ -292,7 +281,6 @@ trees_with_districts <- st_join(trees_sf, council, join = st_intersects)
 # View the joined data structure
 cat("Total trees with district info:", nrow(trees_with_districts), "\n")
 ```
-
 
 ### Question 1: Which council district has the most trees?
 
@@ -404,7 +392,6 @@ cat("\nCouncil District", highest_dead$CounDist,
     round(highest_dead$dead_fraction * 100, 2), "%.\n")
 ```
 
-
 ### Question 4: What is the most common tree species in Manhattan?
 
 ```{r}
@@ -477,11 +464,8 @@ cat("\nThe tree closest to Baruch's campus is a",
     "\nDistance:", round(as.numeric(closest_tree$distance), 2), "meters.\n")
 ```
 
+### EXTRA CREDIT - 2: Additional Parks Department Data
 
-
-## EXTRA CREDIT: Additional Parks Department Data
-
-### Download Tree Risk Assessment Data (1 point)
 ```{r}
 #| message: false
 #| warning: false
@@ -513,7 +497,6 @@ tree_risks <- download_tree_risks()
 cat("Downloaded", nrow(tree_risks), "tree risk assessments\n")
 ```
 
-### Download Forestry Work Orders Data (1 point)
 ```{r}
 #| message: false
 #| warning: false
@@ -544,14 +527,13 @@ cat("Downloaded", nrow(tree_workorders), "forestry work orders\n")
 
 These additional datasets provide context on safety risks and ongoing maintenance work orders across NYC's urban forest, supporting our proposal for targeted intervention in District 19.
 
-
 ## TASK 5: NYC PARKS PROPOSAL
 
-<div style="text-align: center; margin: 20px 0;">
-  <img src="https://media.giphy.com/media/26BRuo6sLetdllPAQ/giphy.gif" alt="Growing tree animation" width="350px">
-  <p><em>Growing a greener NYC, one tree at a time</em></p>
-</div>
+::: {style="text-align: center; margin: 20px 0;"}
+<img src="https://media.giphy.com/media/26BRuo6sLetdllPAQ/giphy.gif" alt="Growing tree animation" width="350px"/>
 
+<p><em>Growing a greener NYC, one tree at a time</em></p>
+:::
 
 ### Government Project Design: Dead Tree Replacement Program for Council District 19
 
@@ -598,10 +580,10 @@ project_scope <- district_trees %>%
 
 Based on the latest NYC Street Tree Census data, Council District 19 currently contains **`r format(project_scope$total_trees, big.mark=",")`** street trees. Our comprehensive assessment reveals:
 
-- **`r project_scope$dead_trees`** dead trees requiring immediate removal and replacement
-- **`r project_scope$poor_trees`** trees in poor condition needing intervention or replacement
-- **`r project_scope$stumps`** existing stumps to be removed and replanted
-- **Total intervention sites: `r project_scope$dead_trees + project_scope$poor_trees + project_scope$stumps`** tree locations
+-   **`r project_scope$dead_trees`** dead trees requiring immediate removal and replacement
+-   **`r project_scope$poor_trees`** trees in poor condition needing intervention or replacement
+-   **`r project_scope$stumps`** existing stumps to be removed and replanted
+-   **Total intervention sites: `r project_scope$dead_trees + project_scope$poor_trees + project_scope$stumps`** tree locations
 
 This initiative will directly impact approximately **`r round((project_scope$dead_trees + project_scope$poor_trees + project_scope$stumps) / project_scope$total_trees * 100, 1)`%** of the district's urban forest, representing a significant investment in our community's environmental future.
 
@@ -746,12 +728,6 @@ The data speaks clearly: Council District 19 requires immediate attention to add
 
 **Additionally, analysis of citywide risk assessment data reveals `r nrow(tree_risks)` documented tree hazards requiring attention, while `r nrow(tree_workorders)` pending work orders demonstrate the scale of maintenance backlogs across NYC. This context underscores the urgency of proactive interventions like our proposed program.**
 
-This program will:
-- **Improve air quality** by replacing non-functional trees with healthy, carbon-sequestering specimens
-- **Reduce urban heat island effects** through expanded canopy coverage
-- **Enhance property values** and neighborhood aesthetics
-- **Demonstrate environmental justice** by ensuring all Queens residents have access to a healthy urban forest
-- **Build climate resilience** by selecting species adapted to future climate conditions
+This program will: - **Improve air quality** by replacing non-functional trees with healthy, carbon-sequestering specimens - **Reduce urban heat island effects** through expanded canopy coverage - **Enhance property values** and neighborhood aesthetics - **Demonstrate environmental justice** by ensuring all Queens residents have access to a healthy urban forest - **Build climate resilience** by selecting species adapted to future climate conditions
 
-I respectfully request NYC Parks Department funding of **$XXX,XXX** to implement this vital initiative over the next 18 months, positioning District 19 as a model for urban forest restoration citywide.
-
+I respectfully request NYC Parks Department funding of **$525,000** to implement this vital initiative over the next 18 months, positioning District 19 as a model for urban forest restoration citywide.
