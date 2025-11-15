@@ -16,7 +16,7 @@ execute:
   message: false
 ---
 
-## TASK 1: DOWNLOAD NYC CITY COUNCIL DISTRICT BOUNDARIES
+## TASK 1: NYC CITY COUNCIL DISTRICT BOUNDARIES
 
 ```{r}
 #| message: false
@@ -56,7 +56,7 @@ council <- NYC_City_Council("https://s-media.nyc.gov/agencies/dcp/assets/files/z
 
 ```
 
-## TASK 2: DOWNLOAD TREE POINTS
+## TASK 2: TREE POINTS
 
 ```{r}
 #| message: false
@@ -125,8 +125,6 @@ glimpse(trees_sf)
 
 ### DATA INTEGRATION AND INTIAL EXPLORATION
 
-### MAPPING NYC TREES
-
 ## TASK 3: PLOT ALL TREE POINTS
 
 ```{r}
@@ -187,7 +185,7 @@ plot_trees <- function(tree_data, council_data, n_trees = 10000) {
 plot_trees(trees_sf, council, n_trees = 5000)
 ```
 
-## \## EXTRA CREDIT - 1 Interactive Visualization
+### EXTRA CREDIT - 1 Interactive Visualization
 
 ```{r}
 #| message: false
@@ -435,6 +433,8 @@ cat("\nThe most common tree species in Manhattan is",
 ### Question 5: What is the species of the tree closest to Baruch's campus?
 
 ```{r}
+library(knitr)
+
 # Create helper function for point creation
 new_st_point <- function(lon, lat) {
   st_sfc(st_point(c(lon, lat))) %>%
@@ -448,20 +448,31 @@ baruch_point <- new_st_point(-73.9838, 40.7402)
 trees_with_distance <- trees_sf %>%
   mutate(distance = st_distance(geometry, baruch_point))
 
-# Find closest tree
+# Show TOP 5 closest trees
+top_5_closest <- trees_with_distance %>%
+  arrange(distance) %>%
+  slice(1:5) %>%
+  st_drop_geometry() %>%
+  select(spc_common, address, distance) %>%
+  mutate(distance_m = round(as.numeric(distance), 1)) %>%
+  select(spc_common, address, distance_m)
+
+top_5_closest %>%
+  kable(
+    col.names = c("Tree Species", "Address", "Distance (m)"),
+    caption = "Top 5 Trees Closest to Baruch College Campus",
+    align = c("l", "l", "c")
+  )
+
+# Find THE closest tree
 closest_tree <- trees_with_distance %>%
   arrange(distance) %>%
   slice(1)
 
-closest_info <- st_drop_geometry(closest_tree) %>%
-  select(spc_common, address, distance)
-
-print(closest_info)
-
-cat("\nThe tree closest to Baruch's campus is a", 
+cat("\nThe tree closest to Baruch's campus is a **", 
     closest_tree$spc_common, 
-    "located at", closest_tree$address, 
-    "\nDistance:", round(as.numeric(closest_tree$distance), 2), "meters.\n")
+    "** located at ", closest_tree$address, 
+    ", approximately **", round(as.numeric(closest_tree$distance), 1), " meters** away.\n", sep="")
 ```
 
 ### EXTRA CREDIT - 2: Additional Parks Department Data
@@ -730,4 +741,4 @@ The data speaks clearly: Council District 19 requires immediate attention to add
 
 This program will: - **Improve air quality** by replacing non-functional trees with healthy, carbon-sequestering specimens - **Reduce urban heat island effects** through expanded canopy coverage - **Enhance property values** and neighborhood aesthetics - **Demonstrate environmental justice** by ensuring all Queens residents have access to a healthy urban forest - **Build climate resilience** by selecting species adapted to future climate conditions
 
-I respectfully request NYC Parks Department funding of **$525,000** to implement this vital initiative over the next 18 months, positioning District 19 as a model for urban forest restoration citywide.
+I respectfully request NYC Parks Department funding of **\$525,000** to implement this vital initiative over the next 18 months, positioning District 19 as a model for urban forest restoration citywide.
