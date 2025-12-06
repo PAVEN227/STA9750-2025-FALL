@@ -1,5 +1,5 @@
 ---
-title: "MINI PROJECT FOUR - Just the Fact(-Check)s, Ma’am!"
+title: "<span class='blue-title'>MINI PROJECT FOUR</span> – <span class='red-title'>Just the Fact(-Check)s, Ma’am!</span>"
 author: "PAVEN227"
 format:
   html:
@@ -8,12 +8,37 @@ format:
     code-summary: "Show Code"
     toc: true
     toc-depth: 2
+    include-in-header:
+      text: |
+        <style>
+          .blue-title {
+            color: #1f3cff;
+            font-weight: 800;
+          }
+          .red-title {
+            color: #d90429;
+            font-weight: 800;
+          }
+        </style>
 editor: visual
 execute:
   echo: true
   warning: false
   message: false
 ---
+
+<style>
+.blue-title {
+  color: #1f3cff;   /* breaking-news blue */
+  font-weight: 800;
+}
+
+.red-title {
+  color: #d90429;   /* breaking-news red */
+  font-weight: 800;
+}
+</style>
+
 
 ## Introduction
 
