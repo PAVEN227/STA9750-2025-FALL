@@ -1,0 +1,157 @@
+---
+title: "What Makes Music Sound Good — and Successful?"
+author: "Sounds Good"
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    theme: cosmo
+date: 2025-12-18
+---
+
+# Introduction
+
+Over the last decade, the music industry has undergone a profound transformation. Physical sales and radio airplay have been largely supplanted by streaming platforms, social media, and algorithm-driven recommendation systems. Songs are no longer discovered through a single dominant channel; instead, popularity emerges from a complex ecosystem that includes streaming services, user-generated content platforms, and traditional industry institutions.
+
+This shift motivates the overarching question (OQ) of this project:
+
+**What measurable musical characteristics and platform dynamics are most strongly associated with music popularity today?**
+
+Understanding this question matters for multiple audiences. Artists and producers seek insight into how creative decisions translate into reach. Platforms aim to optimize recommendation systems. Listeners, meanwhile, shape outcomes collectively through millions of individual choices. Rather than treating popularity as a single, universal concept, this project recognizes that success may look different depending on where and how it is measured.
+
+To address the OQ comprehensively, we structured the analysis around four integrated sub-questions (SQs), each corresponding to a major platform in the contemporary music ecosystem:
+
+1.  **Spotify:** How do audio features relate to streaming popularity on a major algorithm-driven platform?
+2.  **SoundCloud:** Do alternative, creator-focused platforms reward different musical characteristics?
+3.  **Billboard:** How does chart success relate to streaming metrics and industry influence?
+4.  **YouTube:** What role do visuals and social engagement play in amplifying popularity?
+
+Each SQ addresses a necessary component of the broader popularity pipeline, from sonic attributes to platform mechanics to institutional reinforcement. Together, they allow us to move beyond isolated findings and toward a unified explanation of what makes music both sound good and succeed.
+
+# Spotify: Audio Features, Streaming Popularity, and its relationship with BillBoard charting success.
+
+Spotify offers one of the richest publicly available sources of music metadata, including detailed audio features such as tempo, danceability, energy, and valence. Several individual reports focus on Spotify data to examine how these features relate to popularity, measured through Spotify’s proprietary popularity score and playlist presence.
+
+Across analyses, a consistent pattern emerges: **highly popular songs tend to cluster within a relatively narrow range of audio characteristics**. Density plots and scatterplots in the individual reports show that tracks with moderate-to-high danceability and energy dominate the upper end of the popularity distribution. It is important, however, to note the difference between Spotify's popularity parameter, as defined by their API, and how popularity is gauged from placement on the Billboard Hot 100 Charts. Consequently, we are left with the question of whether songs that perform well on the charts also have a high Spotify popularity score.
+
+[![Figure1](https://adesina923.github.io/STA9750-2025-FALL/billboard_spotify_files/figure-html/unnamed-chunk-23-1.png)](https://adesina923.github.io/STA9750-2025-FALL/billboard_spotify.html)
+
+> When analyzing the percentage of songs that reached the top 10 and top 40 of the Billboard Hot 100 on a yearly basis, and comparing that with Spotify’s popularity metric, it is clear to see that while “popularity” has steadily increased over time for songs on Spotify, the same cannot be said of Billboard charting success, which is much more variable. 2018 seems to be the year of release where songs did better commercially than other years. The year includes mega-hits like “Rockstar” by Post Malone, “God’s Plan” by Drake, and “Sicko Mode” by Travis Scott, which was the most popular song that year on Spotify.
+
+[![Figure2](https://adesina923.github.io/STA9750-2025-FALL/billboard_spotify_files/figure-html/unnamed-chunk-25-1.png)](https://adesina923.github.io/STA9750-2025-FALL/billboard_spotify.html)
+
+> Top 10 hits favor tracks with higher danceability, as well as tracks that have a more positive theme, as highlighted by the valence distributions. Interestingly, energy does not seem to be favored by Top 10 hits any which way, indicating that the Billboard charts include a good mix of low and high energy songs.
+
+[![Figure3](https://adesina923.github.io/STA9750-2025-FALL/billboard_spotify_files/figure-html/unnamed-chunk-27-1.png)](https://adesina923.github.io/STA9750-2025-FALL/billboard_spotify.html)
+
+> Plotting the relationships between some numeric audio features and the staying power of a song on the charts shows that certain features are more associated with a song staying on the charts for a longer time. In general, higher energy, louder songs have more staying power on Billboard’s Hot 100. The same can be said for songs with more positive content (valence), and songs that are more danceable. There is a clear sweet spot for the duration of a song that is most conducive to increased staying power, and most songs are clustered around that 3-4 minute range anyway.
+
+**Paven - Figure placeholder**
+
+![Spotify popularity distributions for featured and non-featured songs](https://paven227.github.io/STA9750-2025-FALL/spotify_analysis_files/figure-html/EDA_FEATURED_POPULARITY-1.png)
+
+![Distribution of Spotify popularity and audio features for featured vs non-featured songs](images/distribution_comparison.png)
+
+**Figure**: Density distributions comparing featured and non-featured songs across Spotify popularity, energy, danceability, acousticness, and valence. Featured tracks tend to be more energetic and danceable, while popularity distributions largely overlap.*
+
+
+While much industry discussion assumes that collaborations boost streaming success by combining fan bases, the Spotify analysis suggests a more nuanced reality.
+
+Across nearly 10,000 songs released between 2015 and 2019, tracks with featured artists show only a modest popularity advantage over solo releases. Although featured songs tend to be slightly more popular on average, the overall popularity distributions overlap substantially. This indicates that collaborations alone do not guarantee increased visibility on Spotify.
+
+Instead, Spotify popularity appears more strongly associated with *how a song sounds* rather than *how many artists are credited*. Featured songs systematically differ in their audio characteristics: they are more energetic, more danceable, and less acoustic than non-featured tracks. These attributes align closely with Spotify’s algorithmic ecosystem, which favors rhythmic clarity, playlist compatibility, and sustained listener engagement.
+
+Importantly, these findings highlight the role of algorithmic reinforcement. Spotify’s recommendation systems and curated playlists appear to reward specific production choices more consistently than artist collaborations themselves. A well-optimized solo track can therefore compete effectively with, or even outperform, a collaboration that lacks strong audio alignment with platform preferences.
+
+
+Importantly, these findings reflect the interaction between listener behavior and **algorithmic reinforcement**, rather than purely individual taste.
+
+A key limitation of Spotify data is the opacity of its popularity metric, which prevents causal interpretation.
+
+# SoundCloud: Alternative Pathways to Visibility
+
+SoundCloud occupies a distinct niche within the music ecosystem and highlights how popularity can emerge outside mainstream pipelines.
+
+**Hajra/Sam Figure placeholder: SoundCloud distribution of audio features**
+
+![](images/clipboard-3065057537.png)
+
+The relationship between tempo and popularity appears weak and largely non-linear. While the smoothed trend line suggests a slight increase in popularity for mid-range tempos, songs across the entire tempo spectrum achieve similar popularity levels. Extremely slow or fast tempos do not consistently correspond to higher or lower popularity, indicating that tempo alone is not a strong driver of mainstream success. This pattern suggests that while tempo may contribute to a song’s overall appeal, it is likely secondary to other factors such as danceability, playlist exposure, and platform-specific recommendation mechanisms.
+
+![](images/clipboard-3720695010.png)
+
+This scatter plot shows a slight positive relationship between danceability and popularity, indicated by the upward trend of the smoothed line. While songs with higher danceability tend to have marginally higher popularity scores on average, the wide vertical spread of points suggests substantial variability, meaning danceability alone does not determine a song’s success. Many highly danceable tracks still have low popularity, and less danceable songs can also achieve high popularity. Overall, this visualization suggests that danceability may contribute to popularity, but its effect is relatively weak and likely interacts with other musical, social, and platform-specific factors.
+
+![](images/clipboard-416036993.png)
+
+This histogram shows the distribution of energy levels among songs with high popularity (popularity ≥ 70). Most highly popular tracks cluster around moderate-to-high energy values, suggesting that mainstream success tends to favor songs that are energetic but not extreme. Very low-energy tracks are relatively rare among popular songs, while extremely high energy values also appear less frequently, indicating diminishing returns at the upper end. Overall, this pattern suggests that while energy contributes to popularity, it operates within an optimal range rather than increasing success monotonically.
+
+The SoundCloud analysis reveals substantially greater diversity in musical characteristics among tracks that gain engagement. This suggests that community-driven discovery enables niche success.
+
+However, SoundCloud engagement does not reliably translate into cross-platform dominance, underscoring platform-specific definitions of success.
+
+# Billboard: Chart Success and Industry Momentum
+
+Unlike other data sources, Billboard charts synthesizes peak, longevity, and instances into a composite measure of success. This institutional dimension introduces additional complexity. Examining whether collaborations (featured artists) enhance chart performance provides insight into industry dynamics, we've analyzed over 2500 songs from 2015-2019 focusing the relationship between featured artists and popularity scores derived from Billboard outcomes.
+
+In the Billboard charts, non-featured songs tend to outperform featured songs in terms of median popularity scores. This suggests that solo performances may have a slight edge in overall popularity during the 2015-2019 period. However, there is significant overlap in popularity scores between both categories, indicating that featured songs can also achieve high levels of success.
+
+**Stanley - Figure placeholder: Billboard rank vs streaming metrics**
+
+![BoxAndWhisk](https://iouie.github.io/STA9750-2025-FALL/fp_files/figure-html/unnamed-chunk-7-1.png)
+
+> From the box and whisker plot above, we can observe that non-featured songs tend to have a higher median popularity score compared to featured songs. The mean popularity score, indicated by the white diamond, also appears to be higher for non-featured songs. This suggests that solo performances may have a slight edge in terms of overall popularity on the Billboard Hot 100 during the 2015-2019 period. However, it’s important to note that there is still a significant overlap in the popularity scores of both categories, indicating that featured songs can also achieve high levels of success. There’s also an overwhelmingly amount of outliers in the non-featured category compared to the featured, yet the mean is so close. In general, it’s safe to assume that non-featured songs perform spectacularly on the Billboard Hot 100 or it’s a one hit wonder, while featured songs tend to perform at a consistent level without many outliers.
+
+![PopularityRatingOverTime](https://iouie.github.io/STA9750-2025-FALL/fp_files/figure-html/unnamed-chunk-9-1.png) From the line graph above, we can observe that both featured and non-featured songs have experienced a gradual decrease in average popularity scores from 2015 to 2019. Featured songs consistently maintain a higher average popularity score compared to featured songs throughout this period until 2018. This trend suggests that solo performances may have a stronger appeal to listeners, potentially due to the unique artistic expression and personal connection that solo artists can convey. Guess the common saying Music was better back in my day. holds some truth to it.
+
+![NumSongsvsScore](https://iouie.github.io/STA9750-2025-FALL/fp_files/figure-html/unnamed-chunk-11-1.png)
+
+> This scatterplot illustrates the relationship between the number of songs an artist has on the Billboard Hot 100 and their average popularity score. The black represents a simple regression low, which looks relatively flat. This suggests that there is no strong correlation between the number of songs an artist has and their average popularity score. In other words, having more songs on the chart does not necessarily guarantee a higher average popularity score. In fact, it looks like having more songs hurt an artist’s popularity score. This indicates that factors other than sheer quantity, such as song quality, marketing strategies, and audience engagement, play significant roles in determining an artist’s popularity on the Billboard Hot 100.
+
+[![Figure4](https://adesina923.github.io/STA9750-2025-FALL/billboard_spotify_files/figure-html/unnamed-chunk-32-1.png)](https://adesina923.github.io/STA9750-2025-FALL/billboard_spotify.html)
+
+> A simple linear regression model to see audio feature associations with chart success (chart score) showed that danceability, loudness, and duration are the most positively associated with chart success. Acousticness, energy, and explicit lyrics are negative predictors for Billboard success. However, it is important to note that these effects are modest. Audio features have a statistically real but small link to chart success, as shown by the 0.02 Adjusted R-squared for the regression. Even though certain audio features may be better than others at influencing popularity, overall, popularity largely depends on non-audio factors like artist profile, release timing, and even record-label influence.
+
+# YouTube: Visual Media and Viral Amplification
+
+YouTube introduces a visual and social dimension to music popularity that fundamentally alters how songs gain and sustain attention.
+
+## YouTube Popularity Distributions: Featured vs. Solo Songs
+
+[![Figure: Popularity of Featured vs Solo Songs on YouTube Music](https://rahicodes.github.io/STA9750-2025-FALL/Rahi_IndividualReport_files/figure-html/unnamed-chunk-9-1.png)](https://rahicodes.github.io/STA9750-2025-FALL/Rahi_IndividualReport.html)
+
+*Figure: Distribution of standardized YouTube popularity scores for featured versus solo songs. Popularity is measured using log-transformed and standardized view counts to account for platform growth and skew.*
+
+[![Figure: Views of Featured vs Solo Songs on YouTube Music](https://rahicodes.github.io/STA9750-2025-FALL/Rahi_IndividualReport_files/figure-html/unnamed-chunk-10-1.png)](https://rahicodes.github.io/STA9750-2025-FALL/Rahi_IndividualReport.html)
+
+*Figure: Log-scaled distribution of YouTube view counts for featured versus solo songs. Solo tracks exhibit slightly higher median views and greater dispersion, reflecting the uneven nature of viral success on the platform.*
+
+### YouTube-Specific Findings
+
+YouTube represents a fundamentally different popularity mechanism compared to audio-only streaming platforms. Unlike Spotify or SoundCloud, success on YouTube Music is mediated by visual engagement, recommendation algorithms, and early momentum rather than sustained passive listening. To examine whether artist collaborations benefit popularity in this context, we analyzed over 24,000 of the most-viewed tracks on YouTube Music, focusing on whether songs with featured artists outperform solo tracks.
+
+Contrary to industry expectations, featured songs do not outperform solo songs on YouTube Music. Across descriptive statistics, hypothesis testing, regression analysis controlling for release year, and bootstrapped confidence intervals, songs with featured artists consistently exhibit slightly lower standardized popularity scores. While the magnitude of this difference is modest, it is statistically robust and persists after accounting for platform growth over time.
+
+These results suggest that collaborations alone are not a reliable mechanism for increasing visibility on YouTube. The platform’s recommendation system appears to prioritize recency, early engagement signals, and viral amplification over artist aggregation. A solo track with strong visual identity or cultural resonance may outperform a collaboration that fails to generate immediate algorithmic traction. This contrasts with platforms like Spotify, where features often improve playlist access and cross-audience discovery.
+
+Taken together, the YouTube analysis highlights the platform-specific nature of music success. While collaborations may carry strategic value elsewhere, YouTube popularity is primarily driven by algorithmic exposure and visual virality rather than the presence of featured artists. This reinforces the broader project conclusion that popularity is not governed by universal rules, but by the interaction between musical content and platform design.
+
+Music videos that achieve viral momentum often precede success on other platforms, positioning YouTube as an early signal of breakout potential.
+
+# Relation to Prior Literature
+
+Prior research emphasizes familiarity, emotional clarity, and moderate complexity as drivers of broad appeal. This project extends that literature by demonstrating how platform mechanics shape and amplify these preferences differently.
+
+We looked at a project by [Equitable Equations](https://github.com/equitable-equations/youtube/tree/main/Data%20analysis%20-%20Billboard%20Hot%20100), in which songs that reached #1 on the Billboard Charts were analyzed, to determine if they were more cheerful. This analysis only focused on the "valence" audio feature of songs, which we expand upon by not only analyzing the entire Billboard Hot 100 chart, but by looking at other audio features like danceability, acousticness, and loudness.
+
+We also engaged with a project by [Zack Loery](https://cs1951a2016millionsong.wordpress.com/2016/05/14/final-report/), in which the Billboard Hot 100 was analyzed against the "Million Songs Dataset" to analyze artist popularity and genre trends using a predefined "hotness" parameter to define popularity. Our project went a step further when defining popularity, as we instead used Billboard charting outcomes to create a meta-score for songs, and used that to assess whether a song was "popular" or not.
+
+# Limitations and Uncertainty
+
+All findings are observational. Platform algorithms are proprietary, and popularity metrics serve as imperfect proxies for cultural impact.
+
+# Conclusion and Next Steps
+
+Music success today emerges from the interaction between sound, platform design, and institutional forces. Future research could incorporate longitudinal analysis, genre stratification, and listener demographics to further refine these insights. For example, we could leverage official streaming APIs to collect clean, up-to-date metadata, audio features, and performance metrics, enabling structured cross-platform analysis of song performance. This would enable us to expand platform coverage beyond Spotify/YouTube Music to include Apple Music and SoundCloud, allowing direct comparisons of ranking, playlisting, and longevity across platforms.
+
+------------------------------------------------------------------------
