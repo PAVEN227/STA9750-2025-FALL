@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap');
+
+:root{
+  --ink:#0B1220;
+  --panel:#101A2E;
+  --line: rgba(148,163,184,0.18);
+  --text:#EDF1F7;
+  --sub:#94A3B8;
+  --teal:#22D3AC;
+  --amber:#F5A524;
+}
+
+body{ background-color: var(--ink) !important; color: var(--text) !important; font-family: 'IBM Plex Sans', system-ui, sans-serif !important; }
+h1, h2, h3, h4, .title, .quarto-title h1{ font-family: 'Space Grotesk', sans-serif !important; color: var(--text) !important; }
+h1.title{ color: var(--teal) !important; }
+h2{ border-bottom: 1px solid var(--line); padding-bottom: 8px; }
+a{ color: var(--teal) !important; }
+a:hover{ color: var(--amber) !important; }
+#TOC, .sidebar, nav[role="doc-toc"]{ background-color: var(--panel) !important; border-color: var(--line) !important; }
+#TOC a, nav[role="doc-toc"] a{ color: var(--sub) !important; }
+pre, code, .sourceCode{ background-color: var(--panel) !important; color: var(--text) !important; border: 1px solid var(--line) !important; border-radius: 6px; }
+table.dataTable, table{ background-color: var(--panel) !important; color: var(--text) !important; }
+table.dataTable thead th, table thead th{ background-color: #16233B !important; color: var(--text) !important; }
+table.dataTable tbody tr, table tbody tr{ background-color: var(--panel) !important; }
+strong{ color: var(--amber); }
+img{ border-radius: 8px; border: 1px solid var(--line); background-color: #fff; padding: 6px; }
